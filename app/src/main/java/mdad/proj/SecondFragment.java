@@ -23,6 +23,7 @@ public class SecondFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String mParam3;
 
     public SecondFragment() {
         // Required empty public constructor

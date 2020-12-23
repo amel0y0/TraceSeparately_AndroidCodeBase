@@ -13,21 +13,14 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="213dp"
+            android:layout_height="14dp"
             android:text="EXAMPLE FRAGMENT WORKING"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"
-            tools:layout_editor_absoluteX="-136dp"
-            tools:layout_editor_absoluteY="30dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

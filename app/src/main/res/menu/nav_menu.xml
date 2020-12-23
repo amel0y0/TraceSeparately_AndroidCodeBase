@@ -18,6 +18,7 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item android:title="@string/log_out"
+                    android:id="@+id/logOut"
                     android:icon="@drawable/ic_baseline_exit_to_app_24">
                 </item>
             </group>

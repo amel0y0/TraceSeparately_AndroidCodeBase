@@ -10,10 +10,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.content.SharedPreferences;
+import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -92,10 +95,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.commit();
 
                 break;
+            case R.id.logOut:
+                logout();
+
 
         }
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void logout(){
+        SharedPreferences sharedPreferences = getSharedPreferences(LogIn.Pref, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+
+        finish();
+        Intent i = new Intent(MainActivity.this, LogIn.class);
+        startActivity(i);
     }
 
 }
