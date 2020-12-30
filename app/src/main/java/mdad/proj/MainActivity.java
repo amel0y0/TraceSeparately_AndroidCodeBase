@@ -6,21 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.content.SharedPreferences;
-import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
-
-import java.io.Console;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         fragmentManager= getSupportFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.flFragment,new ExampleFragment());
+        fragmentTransaction.add(R.id.flFragment,new FirstFragment());
         fragmentTransaction.commit();
 
 
@@ -68,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+
+
+
     @Override
     public void onBackPressed(){
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
@@ -84,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.client:
                 fragmentManager=getSupportFragmentManager();
                 fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.flFragment, new ExampleFragment());
+                fragmentTransaction.replace(R.id.flFragment, new FirstFragment());
                 fragmentTransaction.commit();
 
                 break;
