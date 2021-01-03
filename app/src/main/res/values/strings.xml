@@ -25,6 +25,10 @@
     </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="this_is_search_fragment">this is search fragment</string>
+    <string name="this_is_delete_fragment">this is delete fragment</string>
+    <string name="this_is_register_fragment">this is register fragment</string>
+    <string name="this_is_update_fragment">this is update fragment</string>
 
 
 </resources>
