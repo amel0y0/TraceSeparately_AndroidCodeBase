@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences sharedPreferences = getSharedPreferences(LogIn.Pref, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
-        editor.commit();
+        editor.apply();
 
         finish();
         Intent i = new Intent(MainActivity.this, LogIn.class);
