@@ -93,25 +93,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.commit();
 
                 break;
-            case R.id.deleteClient:
+            case R.id.manageClient:
                 fragmentManager=getSupportFragmentManager();
                 fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.flFragment, new DeleteFragment());
+                fragmentTransaction.replace(R.id.flFragment, new manageFragment());
                 fragmentTransaction.commit();
 
-                break;
-            case R.id.updateClient:
-                fragmentManager=getSupportFragmentManager();
-                fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.flFragment, new UpdateFragment());
-                fragmentTransaction.commit();
 
-                break;
-            case R.id.registerClient:
-                fragmentManager=getSupportFragmentManager();
-                fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.flFragment, new RegisterFragment());
-                fragmentTransaction.commit();
 
                 break;
             case R.id.logOut:
