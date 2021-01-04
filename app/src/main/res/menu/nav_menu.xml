@@ -11,18 +11,11 @@
                     android:id="@+id/searchClient"
                     android:icon="@drawable/ic_person_search_black_24dp">
                 </item>
-                <item android:title="Delete a Client"
-                    android:id="@+id/deleteClient"
-                    android:icon="@drawable/ic_person_search_black_24dp">
+                <item android:title="Manage Clients"
+                    android:id="@+id/manageClient"
+                    android:icon="@drawable/ic_baseline_supervisor_account_24">
                 </item>
-                <item android:title="Update a Client"
-                    android:id="@+id/updateClient"
-                    android:icon="@drawable/ic_person_search_black_24dp">
-                </item>
-                <item android:title="Register a Client"
-                    android:id="@+id/registerClient"
-                    android:icon="@drawable/ic_person_search_black_24dp">
-                </item>
+
             </group>
         </menu>
     </item>
