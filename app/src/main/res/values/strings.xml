@@ -15,6 +15,10 @@
     <string name="openNavDrawer">Navigation Drawer Open</string>
     <string name="closeNavDrawer">Navigation Drawer Closed</string>
 
+    <string name="name">Name</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="clientAddress">Client Address</string>
+
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>

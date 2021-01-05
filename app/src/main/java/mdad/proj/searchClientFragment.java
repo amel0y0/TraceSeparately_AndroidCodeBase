@@ -1,5 +1,6 @@
 package mdad.proj;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +24,9 @@ public class searchClientFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private Button btnSearch;
+    private EditText txtSearch;
+    private int result=0;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -47,20 +54,35 @@ public class searchClientFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_second, container, false);
-        return view;
+        View view= inflater.inflate(R.layout.fragment_search_client, container, false);
+        btnSearch= (Button)view.findViewById(R.id.btnSearch);
+        txtSearch=(EditText)view.findViewById(R.id.txtSearchClient);
+
+        btnSearch.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v) {
+                if (txtSearch != null) {
+                    //Call API PHP JSON for search
+
+                    //IF RESULT COME
+                    if (result > 0) {
+                        /**
+                         *   Intent intent = new Intent(getActivity(), resultSearch.class);
+                         *   startActivity(intent);
+                         */
+                    }
+                }
+            }
+        });
+     return view;
+
     }
 }
