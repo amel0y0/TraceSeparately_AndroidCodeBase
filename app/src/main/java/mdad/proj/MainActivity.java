@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         fragmentManager= getSupportFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.flFragment,new FirstFragment());
+        fragmentTransaction.add(R.id.flFragment,new clientFragment());
         fragmentTransaction.commit();
 
 
@@ -82,14 +82,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.client:
                 fragmentManager=getSupportFragmentManager();
                 fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.flFragment, new FirstFragment());
+                fragmentTransaction.replace(R.id.flFragment, new clientFragment());
                 fragmentTransaction.commit();
 
                 break;
             case R.id.searchClient:
                 fragmentManager=getSupportFragmentManager();
                 fragmentTransaction=fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.flFragment, new SecondFragment());
+                fragmentTransaction.replace(R.id.flFragment, new searchClientFragment());
                 fragmentTransaction.commit();
 
                 break;

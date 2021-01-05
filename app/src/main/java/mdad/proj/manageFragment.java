@@ -79,6 +79,25 @@ public class manageFragment extends Fragment {
             }
         });
 
+        btnUpdate.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), updateClient.class);
+                startActivity(intent);
+            }
+        });
+        btnDelete.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), deleteClient.class);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
 
         // Inflate the layout for this fragment
