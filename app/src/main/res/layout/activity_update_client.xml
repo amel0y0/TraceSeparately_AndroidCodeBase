@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".updateClient">
 
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/my_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/btnUpdateClient"
         android:layout_width="wrap_content"
@@ -17,67 +32,46 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/viewDob"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:text="Date of birth:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtDate"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/viewName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:text="Name:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtName"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/viewPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:text="Phone:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtPhone"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="186dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="142dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/viewPassword"
+        app:layout_constraintStart_toEndOf="@+id/viewUsername"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txtNric"
+    <TextView
+        android:id="@+id/viewPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/txtPassword"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:text="Enter as YYYY-MM-DD"
+        app:layout_constraintStart_toStartOf="@+id/txtDate"
+        app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
-    <EditText
-        android:id="@+id/txtPassword"
+    <TextView
+        android:id="@+id/viewPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/txtName"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:text="Password:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtPassword"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:text="username appears here"
+        app:layout_constraintBottom_toTopOf="@+id/txtName"
+        app:layout_constraintStart_toStartOf="@+id/txtName" />
 
     <EditText
         android:id="@+id/txtDate"
@@ -92,23 +86,44 @@
         app:layout_constraintTop_toBottomOf="@+id/txtAddress" />
 
     <TextView
-        android:id="@+id/txtUsername"
+        android:id="@+id/viewPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="26dp"
-        android:text="username appears here"
-        app:layout_constraintBottom_toTopOf="@+id/txtName"
-        app:layout_constraintStart_toStartOf="@+id/txtName" />
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:text="Phone:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtPhone"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/txtPhone"
+        android:id="@+id/txtNric"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="14dp"
         android:ems="10"
-        android:inputType="phone"
-        app:layout_constraintStart_toStartOf="@+id/txtNric"
-        app:layout_constraintTop_toBottomOf="@+id/txtNric" />
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/txtPassword"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+
+    <TextView
+        android:id="@+id/viewAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:text="Address:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtAddress"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:text="Name:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtName"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/txtAddress"
@@ -120,42 +135,52 @@
         app:layout_constraintStart_toStartOf="@+id/txtPhone"
         app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
 
-    <TextView
-        android:id="@+id/viewPassword"
+    <EditText
+        android:id="@+id/txtPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:text="Password:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtPassword"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/viewAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:text="Address:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtAddress"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/txtName"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <TextView
         android:id="@+id/viewUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
         android:text="Username:"
         app:layout_constraintBaseline_toBaselineOf="@+id/txtUsername"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/viewDob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:text="Date of birth:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtDate"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/txtPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintStart_toStartOf="@+id/txtNric"
+        app:layout_constraintTop_toBottomOf="@+id/txtNric" />
+
+    <TextView
         android:id="@+id/viewNric"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
         android:text="NRIC:"
         app:layout_constraintBaseline_toBaselineOf="@+id/txtNric"
         app:layout_constraintStart_toStartOf="parent" />
