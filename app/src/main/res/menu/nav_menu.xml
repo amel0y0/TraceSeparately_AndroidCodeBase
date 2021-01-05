@@ -7,7 +7,7 @@
                     android:id="@+id/client"
                     android:icon="@drawable/ic_perm_identity_black_24dp">
                 </item>
-                <item android:title="@string/search_a_client"
+                <item android:title="@string/searchClientText"
                     android:id="@+id/searchClient"
                     android:icon="@drawable/ic_person_search_black_24dp">
                 </item>

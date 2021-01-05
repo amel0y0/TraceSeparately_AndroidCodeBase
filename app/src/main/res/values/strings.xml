@@ -3,7 +3,7 @@
     <string name="title_activity_log_in">Sign In</string>
 
     <string name="clients">Clients</string>
-    <string name="search_a_client">Search a Client</string>
+    <string name="searchClientText">Search a Client</string>
     <string name="delete_a_client">Delete a Client</string>
     <string name="log_out">Log Out</string>
     <string name="settings">Settings</string>
