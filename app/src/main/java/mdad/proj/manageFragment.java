@@ -3,10 +3,11 @@ package mdad.proj;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +20,7 @@ public class manageFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private Button btnAdd,btnUpdate,btnDelete;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -46,19 +48,44 @@ public class manageFragment extends Fragment {
         return fragment;
     }
 
+    /*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.fragment_manage, container, false);
+
+        btnAdd = (Button)rootView.findViewById(R.id.btnAdd);
+        btnDelete = (Button)rootView.findViewById(R.id.btnDelete);
+        btnUpdate = (Button)rootView.findViewById(R.id.btnUpdate);
+
+        btnAdd.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), addClient.class);
+                startActivity(intent);
+            }
+        });
+
+        return rootView;
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_manage, container, false);
+        //return inflater.inflate(R.layout.fragment_manage, container, false);
     }
+
+
+
+
 }

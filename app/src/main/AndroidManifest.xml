@@ -10,7 +10,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnclePleaseNo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".backendService"></activity>
+
+        <activity android:name=".updateClient"
+            android:parentActivityName=".MainActivity">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".deleteClient"
+            android:parentActivityName=".MainActivity">
+        <!-- The meta-data tag is required if you support API level 15 and lower -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity"/>
+        </activity>
+
+        <activity android:name=".addClient"
+            android:parentActivityName=".MainActivity">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="androidx.support.PARENT_ACTIVITY"
+                android:value="mdad.proj.MainActivity" />
+        </activity>
+
+        <activity android:name=".backendService" />
+
         <activity
             android:name=".LogIn"
             android:label="Trace Separately">
@@ -20,6 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity" />
     </application>
 
