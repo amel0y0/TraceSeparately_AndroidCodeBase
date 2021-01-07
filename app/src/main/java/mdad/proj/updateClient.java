@@ -23,5 +23,7 @@ public class updateClient extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+
     }
 }

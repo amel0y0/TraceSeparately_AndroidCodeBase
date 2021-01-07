@@ -5,8 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class deleteClient extends AppCompatActivity {
+import java.text.DateFormatSymbols;
+
+public class deleteClient extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+    ListView lvClient;
+    String[] client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +33,17 @@ public class deleteClient extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+        lvClient = findViewById(R.id.lvClient);
+        client = new DateFormatSymbols().getMonths();
+        ArrayAdapter<String> clientAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, client);
+        lvClient.setAdapter(clientAdapter);
+        lvClient.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String client = parent.getItemAtPosition(position).toString();
+        Toast.makeText(getApplicationContext(), "Clicked: "+ client, Toast.LENGTH_SHORT).show();
     }
 }
