@@ -10,43 +10,57 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnclePleaseNo"
         android:usesCleartextTraffic="true">
+        <service
+            android:name=".accelerometerService"
+            android:enabled="true"
+            android:exported="true"></service>
 
-        <activity android:name=".updateClient"
+        <activity
+            android:name=".updateClient"
             android:parentActivityName=".MainActivity">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
-        <activity android:name=".deleteClient"
+        <activity
+            android:name=".deleteClient"
             android:parentActivityName=".MainActivity">
-        <!-- The meta-data tag is required if you support API level 15 and lower -->
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity"/>
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
-
-        <activity android:name=".addClient"
+        <activity
+            android:name=".addClient"
             android:parentActivityName=".MainActivity">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="androidx.support.PARENT_ACTIVITY"
                 android:value="mdad.proj.MainActivity" />
         </activity>
 
-        <activity android:name=".backendService" />
+        <activity android:name=".backendService">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
         <activity
             android:name=".LogIn"
             android:label="Trace Separately">
-            <intent-filter>
+         <!--   <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+         -->
         </activity>
-
         <activity android:name=".MainActivity" />
     </application>
 
