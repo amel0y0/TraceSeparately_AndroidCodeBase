@@ -10,10 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnclePleaseNo"
         android:usesCleartextTraffic="true">
+        <activity android:name=".accelerometerTest">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".accelerometerService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".updateClient"
@@ -42,25 +50,24 @@
                 android:name="androidx.support.PARENT_ACTIVITY"
                 android:value="mdad.proj.MainActivity" />
         </activity>
-
         <activity android:name=".backendService">
-        <!--<intent-filter>
+
+            <!--
+        <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-        -->
+            -->
         </activity>
-
         <activity
             android:name=".LogIn"
             android:label="Trace Separately">
-         <intent-filter>
+          <!--  <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            </intent-filter>-->
         </activity>
         <activity android:name=".MainActivity" />
     </application>
