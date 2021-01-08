@@ -18,8 +18,8 @@ public class accelerometerService extends Service implements SensorEventListener
 
     Handler handler = new Handler();
     Runnable runnable;
-    int delay = 5000;
-    int delay2=1000;
+    int delay =10000;
+    //int delay2=1000;
     private static final String TAG = "ACCELEROMETER SERVICE";
 
     private SensorManager sensorManager;
@@ -53,12 +53,12 @@ public class accelerometerService extends Service implements SensorEventListener
         handler.postDelayed(runnable = new Runnable() {
             public void run() {
                 handler.postDelayed(runnable, delay);
-                Log.d(TAG,"onSensorChanged X:" + x + "   Y:" + y + "   Z:" +z);
-                Toast.makeText(accelerometerService.this, "X:" + x + "Y:" + y + "Z:" +z,
-                        Toast.LENGTH_SHORT).show();
+                Log.i(TAG,"onSensorChanged X:" + x + "   Y:" + y + "   Z:" +z);
+                Toast.makeText(accelerometerService.this, "X:" + x + "Y:" + y + "Z:" +z, Toast.LENGTH_SHORT).show();
             }
         }, delay);
         return START_STICKY;
+
     }
 
 
