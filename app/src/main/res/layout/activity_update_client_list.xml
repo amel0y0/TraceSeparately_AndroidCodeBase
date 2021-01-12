@@ -16,7 +16,7 @@
         android:theme="?attr/actionBarTheme" />
 
     <ListView
-        android:id="@+id/lvClientUpdate"
+        android:id="@+id/productsList"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
