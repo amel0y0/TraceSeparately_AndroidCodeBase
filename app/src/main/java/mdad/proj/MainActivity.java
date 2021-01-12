@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
-
+    public static String ipBaseAddress = "http://192.168.1.234:81/project";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +98,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction=fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.flFragment, new manageFragment());
                 fragmentTransaction.commit();
-
-
 
                 break;
             case R.id.logOut:
