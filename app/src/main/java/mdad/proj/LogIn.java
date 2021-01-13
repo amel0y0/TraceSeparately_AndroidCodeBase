@@ -63,8 +63,8 @@ public class LogIn extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                String pw= mPassword.getText().toString();
-                String uName= mUserName.getText().toString();
+                String pw       = mPassword.getText().toString();
+                String uName    = mUserName.getText().toString();
 
                 if(pw.equals(Y) && uName.equals(X))
                 {
