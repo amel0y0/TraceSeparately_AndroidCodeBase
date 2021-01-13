@@ -26,16 +26,14 @@ public class addClient extends AppCompatActivity {
 
     private EditText txtAddUsername, txtAddPassword, txtClientName, txtNRIC, txtMobileNo, txtClientAddress, txtDOB, txtClientAdmin;
     private Button btnAdd;
-
+    String  username, password, clientName,nric, mobileNo,clientAddress,clientAdmin,dob;
 
     // url to create new product
 
-    private static String url_create_product =MainActivity.ipBaseAddress+"/register_clientJson.php";
+    private static String url_create_product =MainActivity.ipBaseAddress+"register_clientJson.php";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCT = "product";
-    private static final String TAG_PID = "client_id";
 
     private static final String TAG_USERNAME = "client_username";
     private static final String TAG_PASSWORD = "client_password";
@@ -63,23 +61,28 @@ public class addClient extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
+        txtAddUsername=(EditText) findViewById(R.id.txtAddUsername);
+        txtAddPassword=(EditText) findViewById(R.id.txtAddPassword);
+        txtClientName=(EditText) findViewById(R.id.txtClientName);
+        txtNRIC=(EditText) findViewById(R.id.txtNRIC);
         txtMobileNo= (EditText) findViewById(R.id.txtMobileNo);
         txtClientAddress = (EditText) findViewById(R.id.txtClientAddress);
-        txtClientName=(EditText) findViewById(R.id.txtClientName);
+        txtDOB=(EditText) findViewById(R.id.txtDOB);
+        txtClientAdmin=(EditText) findViewById(R.id.txtClientAdmin);
 
         btnAdd=(Button) findViewById(R.id.btnAddClient);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String username = txtAddUsername.getText().toString();
-                    String password = txtAddPassword.getText().toString();
-                    String clientName = txtClientName.getText().toString();
-                    String nric = txtClientName.getText().toString();
-                    String mobileNo = txtMobileNo.getText().toString();
-                    String clientAddress = txtClientAddress.getText().toString();
-                    String dob = txtDOB.getText().toString();
-                    String clientaddress = txtClientAddress.getText().toString();
+                    username = txtAddUsername.getText().toString();
+                    password = txtAddPassword.getText().toString();
+                    clientName = txtClientName.getText().toString();
+                    nric = txtNRIC.getText().toString();
+                    mobileNo = txtMobileNo.getText().toString();
+                    clientAddress = txtClientAddress.getText().toString();
+                    dob = txtDOB.getText().toString();
+                    clientAdmin = txtClientAdmin.getText().toString();
 
 
                     /**
@@ -87,14 +90,14 @@ public class addClient extends AppCompatActivity {
                      */
                     JSONObject dataJson = new JSONObject();
                     try{
-                        dataJson.put(TAG_PASSWORD, username);
+                        dataJson.put(TAG_USERNAME, username);
                         dataJson.put(TAG_PASSWORD, password);
                         dataJson.put(TAG_CLIENTNAME, clientName);
                         dataJson.put(TAG_NRIC, nric);
                         dataJson.put(TAG_MOBILENUMBER, mobileNo);
                         dataJson.put(TAG_CLIENTADDRESS, clientAddress);
                         dataJson.put(TAG_DOB, dob);
-                        dataJson.put(TAG_CLIENTADDRESS, clientaddress);
+                        dataJson.put(TAG_CLIENTADMIN, clientAdmin);
 
 
 
@@ -140,7 +143,6 @@ public class addClient extends AppCompatActivity {
         Log.i("----Response", response+" ");
         try {
             if(response.getInt(TAG_SUCCESS)==1){
-
                 finish();
                 Intent i = new Intent(this, addClient.class);
                 startActivity(i);
