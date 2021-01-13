@@ -16,8 +16,16 @@
     <string name="closeNavDrawer">Navigation Drawer Closed</string>
 
     <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
     <string name="phoneNumber">Phone Number</string>
     <string name="clientAddress">Client Address</string>
+    <string name="nric">NRIC</string>
+    <string name="Address">Address</string>
+    <string name="DOB">Date Of Birth</string>
+
+
+    <string name="btnAddClient">Add</string>
 
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>

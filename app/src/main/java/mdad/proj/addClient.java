@@ -24,9 +24,26 @@ import org.json.JSONObject;
 
 public class addClient extends AppCompatActivity {
 
-    private EditText txtAddUsername, txtAddPassword, txtClientName, txtNRIC, txtMobileNo, txtClientAddress, txtDOB, txtClientAdmin;
+    private EditText
+            txtAddUsername,
+            txtAddPassword,
+            txtClientName,
+            txtNRIC,
+            txtMobileNo,
+            txtClientAddress,
+            txtDOB;
+
     private Button btnAdd;
-    String  username, password, clientName,nric, mobileNo,clientAddress,clientAdmin,dob;
+
+    private String
+            username,
+            password,
+            clientName,
+            nric,
+            mobileNo,
+            clientAddress,
+            clientAdmin,
+            dob;
 
     // url to create new product
 
@@ -51,8 +68,7 @@ public class addClient extends AppCompatActivity {
         setContentView(R.layout.activity_add_client);
 
         // my_toolbar is defined in the layout file
-        Toolbar myChildToolbar =
-                (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myChildToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myChildToolbar);
 
         // Get a support ActionBar corresponding to this toolbar
@@ -61,35 +77,35 @@ public class addClient extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        txtAddUsername=(EditText) findViewById(R.id.txtAddUsername);
-        txtAddPassword=(EditText) findViewById(R.id.txtAddPassword);
-        txtClientName=(EditText) findViewById(R.id.txtClientName);
-        txtNRIC=(EditText) findViewById(R.id.txtNRIC);
-        txtMobileNo= (EditText) findViewById(R.id.txtMobileNo);
-        txtClientAddress = (EditText) findViewById(R.id.txtClientAddress);
-        txtDOB=(EditText) findViewById(R.id.txtDOB);
-        txtClientAdmin=(EditText) findViewById(R.id.txtClientAdmin);
+        txtAddUsername   =   (EditText) findViewById(R.id.txtAddUsername);
+        txtAddPassword   =   (EditText) findViewById(R.id.txtAddPassword);
+        txtClientName    =   (EditText) findViewById(R.id.txtClientName);
+        txtNRIC          =   (EditText) findViewById(R.id.txtNRIC);
+        txtMobileNo      =   (EditText) findViewById(R.id.txtMobileNo);
+        txtClientAddress =   (EditText) findViewById(R.id.txtClientAddress);
+        txtDOB           =   (EditText) findViewById(R.id.txtDOB);
 
-        btnAdd=(Button) findViewById(R.id.btnAddClient);
+        btnAdd           =   (Button)   findViewById(R.id.btnAddClient);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
-                    username = txtAddUsername.getText().toString();
-                    password = txtAddPassword.getText().toString();
-                    clientName = txtClientName.getText().toString();
-                    nric = txtNRIC.getText().toString();
-                    mobileNo = txtMobileNo.getText().toString();
-                    clientAddress = txtClientAddress.getText().toString();
-                    dob = txtDOB.getText().toString();
-                    clientAdmin = txtClientAdmin.getText().toString();
 
+                    username        = txtAddUsername.getText().toString();
+                    password        = txtAddPassword.getText().toString();
+                    clientName      = txtClientName.getText().toString();
+                    nric            = txtNRIC.getText().toString();
+                    mobileNo        = txtMobileNo.getText().toString();
+                    clientAddress   = txtClientAddress.getText().toString();
+                    dob             = txtDOB.getText().toString();
 
-                    /**
-                     *  HERE IS WHERE U PUT ALL THE ADDING OF THE CODE LMAO FOR THE DATABASE
-                     */
+                    clientAdmin = "C"; //ALWAYS C FOR CLIENT
+
                     JSONObject dataJson = new JSONObject();
+
                     try{
+
                         dataJson.put(TAG_USERNAME, username);
                         dataJson.put(TAG_PASSWORD, password);
                         dataJson.put(TAG_CLIENTNAME, clientName);
@@ -98,8 +114,6 @@ public class addClient extends AppCompatActivity {
                         dataJson.put(TAG_CLIENTADDRESS, clientAddress);
                         dataJson.put(TAG_DOB, dob);
                         dataJson.put(TAG_CLIENTADMIN, clientAdmin);
-
-
 
                     }catch(JSONException e){
 
@@ -143,9 +157,15 @@ public class addClient extends AppCompatActivity {
         Log.i("----Response", response+" ");
         try {
             if(response.getInt(TAG_SUCCESS)==1){
+
                 finish();
                 Intent i = new Intent(this, addClient.class);
                 startActivity(i);
+
+                /**
+                *  WRITE TOAST MSG TO SHOWCASE THAT CLIENT HAS BEEN ADDED
+                *  INSTEAD OF INTENT AND REFRESH CLASS
+                 */
 
 
             }else{

@@ -38,7 +38,7 @@ public class LogIn extends AppCompatActivity {
 
 
     private static final String url_login = MainActivity.ipBaseAddress+"/loginJ.php";
-    // url to update product
+    // url to update product8u7
 
     // private static final String url_login = MainActivity.ipBaseAddress+"/php/loginJ.php";
 

@@ -20,8 +20,6 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static String ipBaseAddress = "http://192.168.0.111:81/products";
-
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
