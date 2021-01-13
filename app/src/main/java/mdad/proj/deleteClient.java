@@ -17,7 +17,7 @@ import java.text.DateFormatSymbols;
 
 public class deleteClient extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    ListView lvClient;
+    ListView lvClientDelete;
     String[] client;
 
     @Override
@@ -36,11 +36,11 @@ public class deleteClient extends AppCompatActivity implements AdapterView.OnIte
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        lvClient = findViewById(R.id.lvClient);
+        lvClientDelete = findViewById(R.id.lvClientDelete);
         client = new DateFormatSymbols().getMonths();
         ArrayAdapter<String> clientAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, client);
-        lvClient.setAdapter(clientAdapter);
-        lvClient.setOnItemClickListener(this);
+        lvClientDelete.setAdapter(clientAdapter);
+        lvClientDelete.setOnItemClickListener(this);
     }
 
     @Override

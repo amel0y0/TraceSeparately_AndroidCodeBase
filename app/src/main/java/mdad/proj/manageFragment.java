@@ -73,7 +73,7 @@ public class manageFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(getActivity(), updateClient.class);
+                Intent intent = new Intent(getActivity(), updateClientList.class);
                 startActivity(intent);
             }
         });
