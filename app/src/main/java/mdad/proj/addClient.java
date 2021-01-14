@@ -24,9 +24,9 @@ import org.json.JSONObject;
 
 public class addClient extends AppCompatActivity {
 
-    private EditText txtAddUsername, txtAddPassword, txtClientName, txtNRIC, txtMobileNo, txtClientAddress, txtDOB, txtClientAdmin;
+    private EditText txtAddUsername, txtAddPassword, txtClientName, txtNRIC, txtMobileNo, txtClientAddress, txtDOB, txtClientAdmin, txtInCharge;
     private Button btnAdd;
-    String  username, password, clientName,nric, mobileNo,clientAddress,clientAdmin,dob;
+    String  username, password, clientName, nric, mobileNo, clientAddress, clientAdmin, dob, in_charge;
 
     // url to create new product
 
@@ -35,14 +35,15 @@ public class addClient extends AppCompatActivity {
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
 
-    private static final String TAG_USERNAME = "client_username";
-    private static final String TAG_PASSWORD = "client_password";
-    private static final String TAG_CLIENTNAME = "client_name";
+    private static final String TAG_USERNAME = "username";
+    private static final String TAG_PASSWORD = "password";
+    private static final String TAG_CLIENTNAME = "name";
     private static final String TAG_NRIC = "nric_number";
     private static final String TAG_MOBILENUMBER = "phone_number";
     private static final String TAG_CLIENTADDRESS = "address";
     private static final String TAG_DOB = "date_of_birth";
     private static final String TAG_CLIENTADMIN = "client_admin";
+    private static final String TAG_INCHARGE = "in_charge";
 
 
     @Override
@@ -69,6 +70,7 @@ public class addClient extends AppCompatActivity {
         txtClientAddress = (EditText) findViewById(R.id.txtClientAddress);
         txtDOB=(EditText) findViewById(R.id.txtDOB);
         txtClientAdmin=(EditText) findViewById(R.id.txtClientAdmin);
+        txtInCharge=(EditText) findViewById(R.id.txtInCharge);
 
         btnAdd=(Button) findViewById(R.id.btnAddClient);
 
@@ -83,6 +85,7 @@ public class addClient extends AppCompatActivity {
                     clientAddress = txtClientAddress.getText().toString();
                     dob = txtDOB.getText().toString();
                     clientAdmin = txtClientAdmin.getText().toString();
+                    in_charge = txtInCharge.getText().toString();
 
 
                     /**
@@ -98,6 +101,7 @@ public class addClient extends AppCompatActivity {
                         dataJson.put(TAG_CLIENTADDRESS, clientAddress);
                         dataJson.put(TAG_DOB, dob);
                         dataJson.put(TAG_CLIENTADMIN, clientAdmin);
+                        dataJson.put(TAG_INCHARGE, in_charge);
 
 
 

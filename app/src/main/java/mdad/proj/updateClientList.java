@@ -48,9 +48,9 @@ public class updateClientList extends AppCompatActivity {
     private static String url_all_products = MainActivity.ipBaseAddress+"/get_all_clientsJson.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "client";
-    private static final String TAG_PID = "client_id";
-    private static final String TAG_NAME = "client_username";
+    private static final String TAG_PRODUCTS = "users";
+    private static final String TAG_PID = "user_id";
+    private static final String TAG_NAME = "username";
 
     // products JSONArray
     JSONArray products = null;
