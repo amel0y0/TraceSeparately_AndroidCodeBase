@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,9 +36,10 @@ import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class updateClientList extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class updateClientList extends AppCompatActivity {
 
-    //ListView lvClientUpdate;
+    private ListView lvClientUpdate;
+
     //String[] client;
 
     ArrayList<HashMap<String, String>> productsList;
@@ -46,7 +48,7 @@ public class updateClientList extends AppCompatActivity implements AdapterView.O
     private static String url_all_products = MainActivity.ipBaseAddress+"/get_all_clientsJson.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "products";
+    private static final String TAG_PRODUCTS = "client";
     private static final String TAG_PID = "client_id";
     private static final String TAG_NAME = "client_username";
 
@@ -80,18 +82,26 @@ public class updateClientList extends AppCompatActivity implements AdapterView.O
         productsList = new ArrayList<HashMap<String, String>>();
         // Loading products in Background Thread
         postData(url_all_products,null );
+        lvClientUpdate = (ListView) findViewById(R.id.productsList);
         // Get listview from list_items.xml
         //ListView lv = getListView();
+
+        lvClientUpdate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // getting values from selected ListItem
+                String pid = ((TextView) view.findViewById(R.id.pid)).getText().toString();
+                Intent in = new Intent(getApplicationContext(), updateClient.class);
+                // sending pid to next activity
+                in.putExtra(TAG_PID, pid);
+                startActivity(in);
+
+            }
+        });
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String client = parent.getItemAtPosition(position).toString();
-        Toast.makeText(getApplicationContext(), "Clicked: "+ client, Toast.LENGTH_SHORT).show();
-
-        Intent i = new Intent(getApplicationContext(), updateClient.class);
-        startActivity(i);
-    }
     public void postData(String url, final JSONObject json){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -162,7 +172,7 @@ public class updateClientList extends AppCompatActivity implements AdapterView.O
                         TAG_NAME},
                         new int[] { R.id.pid, R.id.name });
                 // updating listview
-                //setListAdapter(adapter);
+                lvClientUpdate.setAdapter(adapter);
 
             }
             else{
