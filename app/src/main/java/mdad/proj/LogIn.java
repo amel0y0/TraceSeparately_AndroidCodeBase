@@ -63,7 +63,9 @@ public class LogIn extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                String pw       = mPassword.getText().toString();
+/*
+                *
+                * String pw       = mPassword.getText().toString();
                 String uName    = mUserName.getText().toString();
 
                 if(pw.equals(Y) && uName.equals(X))
@@ -78,8 +80,7 @@ public class LogIn extends AppCompatActivity {
                     startActivity(i);
 
                 }
-
-/*
+*/
                 String pw= mPassword.getText().toString();
                 String uName= mUserName.getText().toString();
 
@@ -105,10 +106,9 @@ public class LogIn extends AppCompatActivity {
 
                     }
 
-                    //postData(url_login,dataJson,1 );
+                    postData(url_login,dataJson,1 );
 
                 }
-*/
             }
         });
 
