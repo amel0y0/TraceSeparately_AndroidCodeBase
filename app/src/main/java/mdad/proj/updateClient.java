@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,43 +28,47 @@ import java.io.InputStream;
 
 public class updateClient extends AppCompatActivity {
 
-    EditText txtName;
-    EditText txtPrice;
-    EditText txtDesc;
-    EditText txtCreatedAt;
+    TextView txtUsername;
+    EditText txtName, txtPassword, txtNric, txtPhone, txtAddress, txtDate, txtClientAdminUpdate, txtInChargeUpdate;
     Button btnUpdateClient;
     // Response
     String responseServer;
 
-    JSONObject json=null;
+    private static String client_username = "";
+    private static String client_password = "";
+    private static String client_name = "";
+    private static String client_nric = "";
+    private static String client_phone = "";
+    private static String client_address = "";
+    private static String client_date = "";
+    private static String client_admin = "";
+    private static String client_incharge = "";
+
+    JSONObject json = null;
 
     String pid;
     static InputStream is = null;
-    // Progress Dialog
-    private ProgressDialog pDialog;
-
-
 
     // single product url
-    private static final String url_product_details = MainActivity.ipBaseAddress+"/get_product_detailsJson.php";
-
+    private static final String url_product_details = MainActivity.ipBaseAddress + "/get_client_detailsJson.php";
     // url to update product
-    private static final String url_update_product = MainActivity.ipBaseAddress+"/update_productJson.php";
+    private static final String url_update_product = MainActivity.ipBaseAddress + "/update_productJson.php";
 
-    // url to delete product
-    private static final String url_delete_product = MainActivity.ipBaseAddress+"/delete_productJson.php";
     // 152.226.144.250
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCT = "product";
-    private static final String TAG_PID = "pid";
-    private static final String TAG_NAME = "name";
-    private static final String TAG_PRICE = "price";
-    private static final String TAG_DESCRIPTION = "description";
+    private static final String TAG_PRODUCT = "users";
+    private static final String TAG_PID = "user_id";
 
-    private static String prodName="";
-    private static String prodPrice="";
-    private static String prodDesc="";
+    private static final String TAG_USERNAME = "username";
+    private static final String TAG_PASSWORD = "password";
+    private static final String TAG_NAME = "name";
+    private static final String TAG_NRICNUMBER = "nric_number";
+    private static final String TAG_PHONENUMBER = "phone_number";
+    private static final String TAG_ADDRESS = "address";
+    private static final String TAG_DATE = "date";
+    private static final String TAG_CLIENTADMIN = "client_admin";
+    private static final String TAG_INCHARGE = "in_charge";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,68 +79,75 @@ public class updateClient extends AppCompatActivity {
         Toolbar myChildToolbar =
                 (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myChildToolbar);
-
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
-
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
+
         // save button
-        btnSave = (Button) findViewById(R.id.btnSave);
-        btnDelete = (Button) findViewById(R.id.btnDelete);
+        btnUpdateClient = (Button) findViewById(R.id.btnUpdateClient);
 
         // getting product details from intent
         Intent i = getIntent();
-
         // getting product id (pid) from intent
         pid = i.getStringExtra(TAG_PID);
 
         //  Log.i("----------Extra:::",pid);
 
 
-
         // Getting complete product details in background thread
 
         JSONObject dataJson = new JSONObject();
-        try{
-            dataJson.put("pid", pid);
+        try {
+            dataJson.put("user_id", pid);
             //     dataJson.put("password", "def");
 
-        }catch(JSONException e){
+        } catch (JSONException e) {
 
         }
 
-        postData(url_product_details,dataJson,1 );
+        postData(url_product_details, dataJson, 1);
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        //Toast.makeText(getApplicationContext(), "This is the pid: " + pid, Toast.LENGTH_SHORT).show();
+
+        btnUpdateClient.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
                 // getting updated data from EditTexts
+                String username = txtUsername.getText().toString();
+                String password = txtPassword.getText().toString();
                 String name = txtName.getText().toString();
-                String price = txtPrice.getText().toString();
-                String description = txtDesc.getText().toString();
+                String nric = txtNric.getText().toString();
+                String phone = txtPhone.getText().toString();
+                String address = txtAddress.getText().toString();
+                String dob = txtDate.getText().toString();
+                String client_admin = txtClientAdminUpdate.getText().toString();
+                String in_charge = txtInChargeUpdate.getText().toString();
 
-
-                pDialog.setMessage("Saving product ...");
-                pDialog.show();
 
                 // starting background task to update product
                 JSONObject dataJson = new JSONObject();
-                try{
-                    dataJson.put("pid", pid);
+                try {
+                    dataJson.put("user_id", pid);
+                    dataJson.put(TAG_USERNAME, username);
+                    dataJson.put(TAG_PASSWORD, password);
                     dataJson.put(TAG_NAME, name);
-                    dataJson.put(TAG_PRICE, price);
-                    dataJson.put(TAG_DESCRIPTION, description);
+                    dataJson.put(TAG_NRICNUMBER, nric);
+                    dataJson.put(TAG_PHONENUMBER, phone);
+                    dataJson.put(TAG_ADDRESS, address);
+                    dataJson.put(TAG_DATE, dob);
+                    dataJson.put(TAG_CLIENTADMIN, client_admin);
+                    dataJson.put(TAG_INCHARGE, in_charge);
 
 
-                }catch(JSONException e){
+                } catch (JSONException e) {
 
                 }
 
-                postData(url_update_product,dataJson,1 );
+                postData(url_update_product, dataJson, 1);
 
             }
         });
@@ -153,7 +165,7 @@ public class updateClient extends AppCompatActivity {
 
                 switch (option){
                     case 1:checkResponseEditProduct(response); break;
-                    case 2:checkResponseSave_delete_Product(response); break;
+                    //case 2:checkResponseSave_delete_Product(response); break;
 
                 }
 
@@ -173,72 +185,57 @@ public class updateClient extends AppCompatActivity {
     }
 
 
-
-
-    public void checkResponseSave_delete_Product(JSONObject response)
-    {
-
+    public void checkResponseEditProduct(JSONObject response) {
         try {
 
-            // dismiss the dialog once product updated
-            pDialog.dismiss();
-            if(response.getInt("success")==1){
-                // successfully updated
-                Intent i = getIntent();
-                // send result code 100 to notify about product update
-                setResult(100, i);
-                finish();
-
-            }else{
-                //Error Response from server
-                Toast.makeText(getApplicationContext(),"Error in deleting...", Toast.LENGTH_LONG).show();
-
-            }
-
-        } catch (JSONException e) {
-
-            e.printStackTrace();
-
-        }
-
-
-    }
-
-
-    public void checkResponseEditProduct(JSONObject response)
-    {
-        try {
-            pDialog.dismiss();
-
-            if(response.getInt("success")==1){
+            if (response.getInt("success") == 1) {
                 // successfully received product details
                 JSONArray productObj = response.getJSONArray(TAG_PRODUCT); // JSON Array
                 // get first product object from JSON Array
-                JSONObject product = productObj.getJSONObject(0);
-                prodName=product.getString(TAG_NAME);
-                prodPrice=product.getString(TAG_PRICE);
-                prodDesc=product.getString(TAG_DESCRIPTION);
+                JSONObject users = productObj.getJSONObject(0);
+                client_username = users.getString(TAG_USERNAME);
+                client_password = users.getString(TAG_PASSWORD);
+                client_name = users.getString(TAG_NAME);
+                client_nric = users.getString(TAG_NRICNUMBER);
+                client_phone = users.getString(TAG_PHONENUMBER);
+                client_address = users.getString(TAG_ADDRESS);
+                client_date = users.getString(TAG_DATE);
+                client_admin = users.getString(TAG_CLIENTADMIN);
+                client_incharge = users.getString(TAG_INCHARGE);
 
 //                Log.i("---Prod details",prodName+"  "+prodPrice+"  "+prodDesc);
-                txtName = (EditText) findViewById(R.id.inputName);
-                txtPrice = (EditText) findViewById(R.id.inputPrice);
-                txtDesc = (EditText) findViewById(R.id.inputDesc);
+                txtUsername = (TextView) findViewById(R.id.txtUsername);
+                txtPassword = (EditText) findViewById(R.id.txtPassword);
+                txtName = (EditText) findViewById(R.id.txtName);
+                txtNric = (EditText) findViewById(R.id.txtNric);
+                txtPhone = (EditText) findViewById(R.id.txtPhone);
+                txtAddress = (EditText) findViewById(R.id.txtAddress);
+                txtDate = (EditText) findViewById(R.id.txtDate);
+                txtClientAdminUpdate = (EditText) findViewById(R.id.txtClientAdminUpdate);
+                txtInChargeUpdate = (EditText) findViewById(R.id.txtInChargeUpdate);
 
                 // display product data in EditText
-                txtName.setText(prodName);
-                txtPrice.setText(prodPrice);
-                txtDesc.setText(prodDesc);
+                txtUsername.setText(client_username);
+                txtPassword.setText(client_password);
+                txtName.setText(client_name);
+                txtNric.setText(client_nric);
+                txtPhone.setText(client_phone);
+                txtAddress.setText(client_address);
+                txtDate.setText(client_date);
+                txtClientAdminUpdate.setText(client_admin);
+                txtInChargeUpdate.setText(client_incharge);
 
+                Toast.makeText(getApplicationContext(), "Value is "+client_username, Toast.LENGTH_LONG).show();
 
-
-            }else{
+            } else {
                 //Error Response from server
-                Toast.makeText(getApplicationContext(),"Error in Editing...", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error in Editing...", Toast.LENGTH_LONG).show();
 
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Doesn't work", Toast.LENGTH_LONG).show();
 
         }
 

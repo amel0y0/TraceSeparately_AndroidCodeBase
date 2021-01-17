@@ -48,9 +48,9 @@ public class updateClientList extends AppCompatActivity {
     private static String url_all_products = MainActivity.ipBaseAddress+"/get_all_clientsJson.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "client";
-    private static final String TAG_PID = "client_id";
-    private static final String TAG_NAME = "client_username";
+    private static final String TAG_PRODUCTS = "users";
+    private static final String TAG_PID = "user_id";
+    private static final String TAG_NAME = "username";
 
     // products JSONArray
     JSONArray products = null;
@@ -100,6 +100,25 @@ public class updateClientList extends AppCompatActivity {
 
             }
         });
+    }
+
+    // Response from Edit Product Activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // if result code 100 means Continue
+        //https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+
+
+        if (resultCode == 100) {
+            // if result code 100 is received
+            // means user edited/deleted product
+            // reload this screen again
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
+
     }
 
     public void postData(String url, final JSONObject json){

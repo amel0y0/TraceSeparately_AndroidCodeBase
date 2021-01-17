@@ -25,19 +25,19 @@
         android:id="@+id/btnUpdateClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="43dp"
         android:layout_marginRight="43dp"
-        android:layout_marginBottom="44dp"
         android:text="UPDATE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInChargeUpdate" />
 
     <EditText
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
         android:layout_marginTop="142dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -48,10 +48,10 @@
         android:id="@+id/viewPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:text="Enter as YYYY-MM-DD"
-        app:layout_constraintStart_toStartOf="@+id/txtDate"
+        app:layout_constraintStart_toStartOf="@+id/txtClientAdminUpdate"
         app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
     <TextView
@@ -79,11 +79,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginLeft="13dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginBottom="25dp"
         android:ems="10"
         android:inputType="date"
-        app:layout_constraintStart_toEndOf="@+id/viewDob"
-        app:layout_constraintTop_toBottomOf="@+id/txtAddress" />
+        app:layout_constraintBottom_toTopOf="@+id/txtClientAdminUpdate"
+        app:layout_constraintStart_toEndOf="@+id/viewDob" />
 
     <TextView
         android:id="@+id/viewPhone"
@@ -184,5 +184,48 @@
         android:text="NRIC:"
         app:layout_constraintBaseline_toBaselineOf="@+id/txtNric"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewClientAdminUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:text="Client/Admin:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtClientAdminUpdate"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewInChargeUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginBottom="111dp"
+        android:text="In Charge:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/txtClientAdminUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginBottom="29dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/viewInChargeUpdate"
+        app:layout_constraintStart_toEndOf="@+id/viewClientAdminUpdate" />
+
+    <EditText
+        android:id="@+id/txtInChargeUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/txtClientAdminUpdate"
+        app:layout_constraintTop_toBottomOf="@+id/txtClientAdminUpdate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
