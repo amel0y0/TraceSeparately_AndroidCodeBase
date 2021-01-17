@@ -29,30 +29,30 @@ import java.io.InputStream;
 public class updateClient extends AppCompatActivity {
 
     TextView txtUsername;
-    EditText txtName, txtPassword, txtNric, txtPhone, txtAddress, txtDate, txtClientAdminUpdate, txtInChargeUpdates;
+    EditText txtName, txtPassword, txtNric, txtPhone, txtAddress, txtDate, txtClientAdminUpdate, txtInChargeUpdate;
     Button btnUpdateClient;
     // Response
     String responseServer;
 
-    private static String client_username="";
-    private static String client_password="";
-    private static String client_name="";
-    private static String client_nric="";
-    private static String client_phone="";
-    private static String client_address="";
-    private static String client_date="";
-    private static String client_admin="";
-    private static String client_incharge="";
+    private static String client_username = "";
+    private static String client_password = "";
+    private static String client_name = "";
+    private static String client_nric = "";
+    private static String client_phone = "";
+    private static String client_address = "";
+    private static String client_date = "";
+    private static String client_admin = "";
+    private static String client_incharge = "";
 
-    JSONObject json=null;
+    JSONObject json = null;
 
     String pid;
     static InputStream is = null;
 
     // single product url
-    private static final String url_product_details = MainActivity.ipBaseAddress+"/get_client_detailsJson.php";
+    private static final String url_product_details = MainActivity.ipBaseAddress + "/get_client_detailsJson.php";
     // url to update product
-    private static final String url_update_product = MainActivity.ipBaseAddress+"/update_productJson.php";
+    private static final String url_update_product = MainActivity.ipBaseAddress + "/update_productJson.php";
 
     // 152.226.144.250
     // JSON Node names
@@ -96,21 +96,20 @@ public class updateClient extends AppCompatActivity {
         //  Log.i("----------Extra:::",pid);
 
 
-
         // Getting complete product details in background thread
 
         JSONObject dataJson = new JSONObject();
-        try{
+        try {
             dataJson.put("user_id", pid);
             //     dataJson.put("password", "def");
 
-        }catch(JSONException e){
+        } catch (JSONException e) {
 
         }
 
-        postData(url_product_details,dataJson,1 );
+        postData(url_product_details, dataJson, 1);
 
-        Toast.makeText(getApplicationContext(), "This is the pid: "+ pid, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "This is the pid: " + pid, Toast.LENGTH_SHORT).show();
 
         btnUpdateClient.setOnClickListener(new View.OnClickListener() {
 
@@ -126,14 +125,13 @@ public class updateClient extends AppCompatActivity {
                 String address = txtAddress.getText().toString();
                 String dob = txtDate.getText().toString();
                 String client_admin = txtClientAdminUpdate.getText().toString();
-                String in_charge = txtInChargeUpdates.getText().toString();
-
+                String in_charge = txtInChargeUpdate.getText().toString();
 
 
                 // starting background task to update product
                 JSONObject dataJson = new JSONObject();
-                try{
-                    dataJson.put("pid", pid);
+                try {
+                    dataJson.put("user_id", pid);
                     dataJson.put(TAG_USERNAME, username);
                     dataJson.put(TAG_PASSWORD, password);
                     dataJson.put(TAG_NAME, name);
@@ -145,11 +143,11 @@ public class updateClient extends AppCompatActivity {
                     dataJson.put(TAG_INCHARGE, in_charge);
 
 
-                }catch(JSONException e){
+                } catch (JSONException e) {
 
                 }
 
-                postData(url_update_product,dataJson,1 );
+                postData(url_update_product, dataJson, 1);
 
             }
         });
@@ -167,6 +165,7 @@ public class updateClient extends AppCompatActivity {
 
                 switch (option){
                     case 1:checkResponseEditProduct(response); break;
+                    //case 2:checkResponseSave_delete_Product(response); break;
 
                 }
 
@@ -186,24 +185,23 @@ public class updateClient extends AppCompatActivity {
     }
 
 
-    public void checkResponseEditProduct(JSONObject response)
-    {
+    public void checkResponseEditProduct(JSONObject response) {
         try {
 
-            if(response.getInt("success")==1){
+            if (response.getInt("success") == 1) {
                 // successfully received product details
                 JSONArray productObj = response.getJSONArray(TAG_PRODUCT); // JSON Array
                 // get first product object from JSON Array
                 JSONObject users = productObj.getJSONObject(0);
-                client_username=users.getString(TAG_USERNAME);
-                client_password=users.getString(TAG_PASSWORD);
-                client_name=users.getString(TAG_NAME);
-                client_nric=users.getString(TAG_NRICNUMBER);
-                client_phone=users.getString(TAG_PHONENUMBER);
-                client_address=users.getString(TAG_ADDRESS);
-                client_date=users.getString(TAG_DATE);
-                client_admin=users.getString(TAG_CLIENTADMIN);
-                client_incharge=users.getString(TAG_INCHARGE);
+                client_username = users.getString(TAG_USERNAME);
+                client_password = users.getString(TAG_PASSWORD);
+                client_name = users.getString(TAG_NAME);
+                client_nric = users.getString(TAG_NRICNUMBER);
+                client_phone = users.getString(TAG_PHONENUMBER);
+                client_address = users.getString(TAG_ADDRESS);
+                client_date = users.getString(TAG_DATE);
+                client_admin = users.getString(TAG_CLIENTADMIN);
+                client_incharge = users.getString(TAG_INCHARGE);
 
 //                Log.i("---Prod details",prodName+"  "+prodPrice+"  "+prodDesc);
                 txtUsername = (TextView) findViewById(R.id.txtUsername);
@@ -214,7 +212,7 @@ public class updateClient extends AppCompatActivity {
                 txtAddress = (EditText) findViewById(R.id.txtAddress);
                 txtDate = (EditText) findViewById(R.id.txtDate);
                 txtClientAdminUpdate = (EditText) findViewById(R.id.txtClientAdminUpdate);
-                txtInChargeUpdates = (EditText) findViewById(R.id.txtInChargeUpdate);
+                txtInChargeUpdate = (EditText) findViewById(R.id.txtInChargeUpdate);
 
                 // display product data in EditText
                 txtUsername.setText(client_username);
@@ -225,19 +223,19 @@ public class updateClient extends AppCompatActivity {
                 txtAddress.setText(client_address);
                 txtDate.setText(client_date);
                 txtClientAdminUpdate.setText(client_admin);
-                txtInChargeUpdates.setText(client_incharge);
+                txtInChargeUpdate.setText(client_incharge);
 
+                Toast.makeText(getApplicationContext(), "Value is "+client_username, Toast.LENGTH_LONG).show();
 
-
-
-            }else{
+            } else {
                 //Error Response from server
-                Toast.makeText(getApplicationContext(),"Error in Editing...", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error in Editing...", Toast.LENGTH_LONG).show();
 
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Doesn't work", Toast.LENGTH_LONG).show();
 
         }
 
