@@ -105,7 +105,6 @@ public class addClient extends AppCompatActivity {
                     JSONObject dataJson = new JSONObject();
 
                     try{
-
                         dataJson.put(TAG_USERNAME, username);
                         dataJson.put(TAG_PASSWORD, password);
                         dataJson.put(TAG_CLIENTNAME, clientName);

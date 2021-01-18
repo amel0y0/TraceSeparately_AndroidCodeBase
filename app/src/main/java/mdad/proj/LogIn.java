@@ -28,22 +28,14 @@ public class LogIn extends AppCompatActivity {
     SharedPreferences sharedPreferences;
 
     private String client_admin;
-
     public String  X = "john";
     public String Y = "password";
     public static final String Pref="JOHNNY";
     public static final String Name = "nameKey";
 
-
-
-
     private static final String url_login = MainActivity.ipBaseAddress+"LoginJ.php";
-    // url to update product8u7
-
-    // private static final String url_login = MainActivity.ipBaseAddress+"/php/loginJ.php";
 
     // JSON Node names
-
     private static final String TAG_SUCCESS = "success";
     private static final String CLIENT_ADMIN = "client_admin";
 
@@ -68,8 +60,7 @@ public class LogIn extends AppCompatActivity {
                 if(pw.isEmpty())
                 {
                     mPassword.setError(getString(R.string.error_field_required));
-
-                }else
+                }
 
                 if(uName.isEmpty())
                 {
@@ -81,13 +72,12 @@ public class LogIn extends AppCompatActivity {
                     try{
                         dataJson.put("username", uName);
                         dataJson.put("password", pw);
-
-
                     }catch(JSONException e){
 
                     }
 
                     postData(url_login,dataJson,1 );
+                    //CALL DATA TO DO JSON posting for Heroku Fire
 
                 }
             }
