@@ -37,7 +37,7 @@ public class LogIn extends AppCompatActivity {
 
 
 
-    private static final String url_login = MainActivity.ipBaseAddress+"/loginJ.php";
+    private static final String url_login = MainActivity.ipBaseAddress+"LoginJ.php";
     // url to update product8u7
 
     // private static final String url_login = MainActivity.ipBaseAddress+"/php/loginJ.php";
@@ -63,27 +63,8 @@ public class LogIn extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-/*
-                *
-                * String pw       = mPassword.getText().toString();
-                String uName    = mUserName.getText().toString();
-
-                if(pw.equals(Y) && uName.equals(X))
-                {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    editor.putString(Name, uName);
-                    editor.commit();
-
-                    finish();
-                    Intent i = new Intent(LogIn.this, MainActivity.class);
-                    startActivity(i);
-
-                }
-*/
                 String pw= mPassword.getText().toString();
                 String uName= mUserName.getText().toString();
-
                 if(pw.isEmpty())
                 {
                     mPassword.setError(getString(R.string.error_field_required));
@@ -133,9 +114,9 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-//                String alert_message;
-//                alert_message = error.toString();
-//                showAlertDialogue("Error", alert_message);
+             String alert_message;
+             alert_message = error.toString();
+             Log.d("Error", alert_message);
             }
 
         });
