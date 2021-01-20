@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -47,7 +48,7 @@ public class addClient extends AppCompatActivity {
 
     // url to create new product
 
-    private static String url_create_product =MainActivity.ipBaseAddress+"register_clientJson.php";
+    private static String url_create_product =  MainActivity.ipBaseAddress+"register_clientJson.php";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
@@ -64,11 +65,13 @@ public class addClient extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_client);
 
         // my_toolbar is defined in the layout file
         Toolbar myChildToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+
         setSupportActionBar(myChildToolbar);
 
         // Get a support ActionBar corresponding to this toolbar
@@ -92,13 +95,13 @@ public class addClient extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    username        = txtAddUsername.getText().toString();
-                    password        = txtAddPassword.getText().toString();
-                    clientName      = txtClientName.getText().toString();
-                    nric            = txtNRIC.getText().toString();
-                    mobileNo        = txtMobileNo.getText().toString();
-                    clientAddress   = txtClientAddress.getText().toString();
-                    dob             = txtDOB.getText().toString();
+                    username        =   txtAddUsername.getText().toString();
+                    password        =   txtAddPassword.getText().toString();
+                    clientName      =   txtClientName.getText().toString();
+                    nric            =   txtNRIC.getText().toString();
+                    mobileNo        =   txtMobileNo.getText().toString();
+                    clientAddress   =   txtClientAddress.getText().toString();
+                    dob             =   txtDOB.getText().toString();
 
                     clientAdmin = "C"; //ALWAYS C FOR CLIENT
 
@@ -156,12 +159,13 @@ public class addClient extends AppCompatActivity {
         Log.i("----Response", response+" ");
         try {
             if(response.getInt(TAG_SUCCESS)==1){
-
-                finish();
-                Intent i = new Intent(this, addClient.class);
-                startActivity(i);
-
+                Toast.makeText(addClient.this, "Client has been Added.", Toast.LENGTH_SHORT).show();
                 /**
+                 *  finish();
+                    Intent i = new Intent(this, addClient.class);
+                    startActivity(i);
+
+
                 *  WRITE TOAST MSG TO SHOWCASE THAT CLIENT HAS BEEN ADDED
                 *  INSTEAD OF INTENT AND REFRESH CLASS
                  */

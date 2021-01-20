@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -80,22 +81,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.client:
-                fragmentManager=getSupportFragmentManager();
-                fragmentTransaction=fragmentManager.beginTransaction();
+
+                fragmentManager     =   getSupportFragmentManager();
+                fragmentTransaction =   fragmentManager.beginTransaction();
+
                 fragmentTransaction.replace(R.id.flFragment, new clientFragment());
                 fragmentTransaction.commit();
 
                 break;
             case R.id.searchClient:
-                fragmentManager=getSupportFragmentManager();
-                fragmentTransaction=fragmentManager.beginTransaction();
+
+                fragmentManager     =   getSupportFragmentManager();
+                fragmentTransaction =   fragmentManager.beginTransaction();
+
                 fragmentTransaction.replace(R.id.flFragment, new searchClientFragment());
                 fragmentTransaction.commit();
 
                 break;
             case R.id.manageClient:
-                fragmentManager=getSupportFragmentManager();
-                fragmentTransaction=fragmentManager.beginTransaction();
+
+                fragmentManager     =   getSupportFragmentManager();
+                fragmentTransaction =   fragmentManager.beginTransaction();
+
                 fragmentTransaction.replace(R.id.flFragment, new manageFragment());
                 fragmentTransaction.commit();
 
@@ -110,8 +117,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
     public void logout(){
+
         SharedPreferences sharedPreferences = getSharedPreferences(LogIn.Pref, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
         editor.clear();
         editor.apply();
 
