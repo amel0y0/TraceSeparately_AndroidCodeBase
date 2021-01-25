@@ -38,7 +38,7 @@ public class LogIn extends AppCompatActivity {
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String CLIENT_ADMIN = "client_admin";
-
+    private static final String ADMIN_IN_CHARGE= "incharge";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +123,19 @@ public class LogIn extends AppCompatActivity {
                 //get CLIENT OR ADMIN STRING
                 client_admin=response.getString(CLIENT_ADMIN);
 
+                /**
+                 *  PLACE HOLDER FOR INCHARGE SESSION
+                 */
+
                 if(client_admin.equals("A")){
+
+                    String adminInCharge= mUserName.getText().toString();
+                    SharedPreferences myPrefs = getSharedPreferences("INCHARGE",0);
+                    SharedPreferences.Editor myEditor = myPrefs.edit();
+                    myEditor.putString("INCHARGE",adminInCharge);
+                    myEditor.commit();
+                    Log.i("MSG",""+adminInCharge);
+
                     //Go Admin Side
                     finish();
                     Intent i = new Intent(this, MainActivity.class);

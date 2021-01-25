@@ -36,7 +36,7 @@ public class addClient extends AppCompatActivity {
 
     private Button btnAdd;
 
-    private String
+     String
             username,
             password,
             clientName,
@@ -44,23 +44,25 @@ public class addClient extends AppCompatActivity {
             mobileNo,
             clientAddress,
             clientAdmin,
-            dob;
+            dob,
+            incharge;
+
 
     // url to create new product
-
     private static String url_create_product =  MainActivity.ipBaseAddress+"register_clientJson.php";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
 
-    private static final String TAG_USERNAME = "client_username";
-    private static final String TAG_PASSWORD = "client_password";
-    private static final String TAG_CLIENTNAME = "client_name";
-    private static final String TAG_NRIC = "nric_number";
-    private static final String TAG_MOBILENUMBER = "phone_number";
+    private static final String TAG_USERNAME = "username";
+    private static final String TAG_PASSWORD = "password";
+    private static final String TAG_CLIENTNAME = "name";
+    private static final String TAG_NRIC = "number";
+    private static final String TAG_MOBILENUMBER = "phone_no";
     private static final String TAG_CLIENTADDRESS = "address";
-    private static final String TAG_DOB = "date_of_birth";
+    private static final String TAG_DOB = "dob";
     private static final String TAG_CLIENTADMIN = "client_admin";
+    private static final String TAG_ADMININCHARGE= "incharge";
 
 
     @Override
@@ -103,6 +105,10 @@ public class addClient extends AppCompatActivity {
                     clientAddress   =   txtClientAddress.getText().toString();
                     dob             =   txtDOB.getText().toString();
 
+                    SharedPreferences myPrefs = getSharedPreferences("INCHARGE",0);
+                    SharedPreferences.Editor myEditor = myPrefs.edit();
+                    incharge = myPrefs.getString("INCHARGE","No name set");
+
                     clientAdmin = "C"; //ALWAYS C FOR CLIENT
 
                     JSONObject dataJson = new JSONObject();
@@ -116,7 +122,7 @@ public class addClient extends AppCompatActivity {
                         dataJson.put(TAG_CLIENTADDRESS, clientAddress);
                         dataJson.put(TAG_DOB, dob);
                         dataJson.put(TAG_CLIENTADMIN, clientAdmin);
-
+                        dataJson.put(TAG_ADMININCHARGE,incharge);
                     }catch(JSONException e){
 
                     }
@@ -126,7 +132,9 @@ public class addClient extends AppCompatActivity {
             });
     }
     public void postData(String url, final JSONObject json, final int option){
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+
         JsonObjectRequest json_obj_req = new JsonObjectRequest(
                 Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
             @Override
