@@ -66,7 +66,7 @@ public class updateClient extends AppCompatActivity {
     private static final String TAG_NRICNUMBER = "nric_number";
     private static final String TAG_PHONENUMBER = "phone_number";
     private static final String TAG_ADDRESS = "address";
-    private static final String TAG_DATE = "date";
+    private static final String TAG_DATE = "date_of_birth";
     private static final String TAG_CLIENTADMIN = "client_admin";
     private static final String TAG_INCHARGE = "in_charge";
 
@@ -161,11 +161,10 @@ public class updateClient extends AppCompatActivity {
                 Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                Toast.makeText(getApplicationContext(), "This works", Toast.LENGTH_SHORT).show();
 
                 switch (option){
-                    case 1:checkResponseEditProduct(response); break;
-                    //case 2:checkResponseSave_delete_Product(response); break;
+                    case 1:checkResponseEditProduct(response);
 
                 }
 
@@ -188,7 +187,6 @@ public class updateClient extends AppCompatActivity {
     public void checkResponseEditProduct(JSONObject response) {
         try {
 
-            if (response.getInt("success") == 1) {
                 // successfully received product details
                 JSONArray productObj = response.getJSONArray(TAG_PRODUCT); // JSON Array
                 // get first product object from JSON Array
@@ -227,15 +225,9 @@ public class updateClient extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Value is "+client_username, Toast.LENGTH_LONG).show();
 
-            } else {
-                //Error Response from server
-                Toast.makeText(getApplicationContext(), "Error in Editing...", Toast.LENGTH_LONG).show();
-
-            }
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Doesn't work", Toast.LENGTH_LONG).show();
 
         }
 
