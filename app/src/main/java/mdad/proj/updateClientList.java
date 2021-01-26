@@ -1,20 +1,12 @@
 package mdad.proj;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.app.ListActivity;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -32,7 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -45,7 +36,7 @@ public class updateClientList extends AppCompatActivity {
     ArrayList<HashMap<String, String>> productsList;
 
     // url to get all products list
-    private static String url_all_products = MainActivity.ipBaseAddress+"/get_all_clientsJson.php";
+    private static String url_all_products = MainActivity.ipBaseAddress1+"/get_all_clientsJson.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "users";

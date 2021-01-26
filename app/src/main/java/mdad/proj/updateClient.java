@@ -50,9 +50,9 @@ public class updateClient extends AppCompatActivity {
     static InputStream is = null;
 
     // single product url
-    private static final String url_product_details = MainActivity.ipBaseAddress + "/get_client_detailsJson.php";
+    private static final String url_product_details = MainActivity.ipBaseAddress1 + "/get_client_detailsJson.php";
     // url to update product
-    private static final String url_update_product = MainActivity.ipBaseAddress + "/update_productJson.php";
+    private static final String url_update_product = MainActivity.ipBaseAddress1 + "/update_productJson.php";
 
     // 152.226.144.250
     // JSON Node names

@@ -42,9 +42,9 @@ public class deleteClient extends AppCompatActivity {
     ArrayList<HashMap<String, String>> productsList;
 
     // url to get all products list
-    private static String url_all_products = MainActivity.ipBaseAddress+"/get_all_clientsJson.php";
+    private static String url_all_products = MainActivity.ipBaseAddress1+"/get_all_clientsJson.php";
     // url to delete product
-    private static final String url_delete_product = MainActivity.ipBaseAddress+"/delete_clientJson.php";
+    private static final String url_delete_product = MainActivity.ipBaseAddress1+"/delete_clientJson.php";
 
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "users";

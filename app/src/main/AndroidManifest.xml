@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mdad.proj">
-
     <!-- Internet Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -48,6 +47,15 @@
         </activity>
         <activity
             android:name=".addClient"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="androidx.support.PARENT_ACTIVITY"
+                android:value="mdad.proj.MainActivity" />
+        </activity>
+        <activity
+            android:name=".resultClient"
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->

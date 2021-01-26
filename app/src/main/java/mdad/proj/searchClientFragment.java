@@ -23,6 +23,13 @@ public class searchClientFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    // url to get all products list
+    private static String url_all_products = MainActivity.ipBaseAddress1+"/get_all_clientsJson.php";
+    // JSON Node names
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_PRODUCTS = "users";
+    private static final String TAG_PID = "user_id";
+    private static final String TAG_NAME = "username";
 
     private Button btnSearch;
     private EditText txtSearch;
@@ -31,6 +38,7 @@ public class searchClientFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String mParam3;
+
 
     public searchClientFragment() {
         // Required empty public constructor
@@ -62,24 +70,16 @@ public class searchClientFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_search_client, container, false);
         btnSearch= (Button)view.findViewById(R.id.btnSearch);
-        txtSearch=(EditText)view.findViewById(R.id.txtSearchClient);
+        txtSearch= (EditText)view.findViewById(R.id.txtSearchClient);
 
         btnSearch.setOnClickListener(new View.OnClickListener()
         {
 
             @Override
             public void onClick(View v) {
-                if (txtSearch != null) {
-                    //Call API PHP JSON for search
-
-                    //IF RESULT COME
-                    if (result > 0) {
-                        /**
-                         *   Intent intent = new Intent(getActivity(), resultSearch.class);
-                         *   startActivity(intent);
-                         */
-                    }
-                }
+                Intent intent = new Intent(getActivity(), resultClient.class);
+                intent.putExtra("NAME_KEY", txtSearch.getText().toString());
+                startActivity(intent);
             }
         });
      return view;

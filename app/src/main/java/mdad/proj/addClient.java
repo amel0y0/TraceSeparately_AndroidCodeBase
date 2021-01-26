@@ -49,7 +49,7 @@ public class addClient extends AppCompatActivity {
 
 
     // url to create new product
-    private static String url_create_product =  MainActivity.ipBaseAddress+"register_clientJson.php";
+    private static String url_create_product =  MainActivity.ipBaseAddress1+"register_clientJson.php";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
