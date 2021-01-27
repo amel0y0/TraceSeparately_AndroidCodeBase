@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
+import java.util.Calendar;
+import java.util.Date;
 
 public class accelerometerService extends Service implements SensorEventListener {
 
@@ -21,7 +23,7 @@ public class accelerometerService extends Service implements SensorEventListener
     int delay =10000;
     //int delay2=1000;
     private static final String TAG = "ACCELEROMETER SERVICE";
-
+    private static final String  TIME_TAG= "TIME OF CURRENT FORMAT";
     private SensorManager sensorManager;
     Sensor accelerometer;
 
@@ -47,13 +49,17 @@ public class accelerometerService extends Service implements SensorEventListener
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
         sensorManager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(accelerometerService.this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
         handler.postDelayed(runnable = new Runnable() {
+
             public void run() {
                 handler.postDelayed(runnable, delay);
                 Log.i(TAG,"onSensorChanged X:" + x + "   Y:" + y + "   Z:" +z);
+                Date currentTime = Calendar.getInstance().getTime();
+                Log.i(TIME_TAG,"Current Time of Sending:" +currentTime);
                 Toast.makeText(accelerometerService.this, "X:" + x + "Y:" + y + "Z:" +z, Toast.LENGTH_SHORT).show();
             }
         }, delay);
