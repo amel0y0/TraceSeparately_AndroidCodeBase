@@ -27,6 +27,8 @@ public class accelerometerService extends Service implements SensorEventListener
     private SensorManager sensorManager;
     Sensor accelerometer;
 
+    private static final String  url_CHECK= MainActivity.ipBaseAddress+"CHECK.php";
+    private static final String  url_SEND= MainActivity.ipBaseAddress+"SEND.php";
     public float x,y,z;
     @Override
     public IBinder onBind(Intent intent) {
