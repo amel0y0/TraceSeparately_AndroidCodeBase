@@ -26,6 +26,7 @@ public class backendService extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Log.i(TAGBTN,"SERVICE HAS BEEN STARTEDDDD");
+
                         startService(new Intent(backendService.this, accelerometerService.class));
                     }
                 }

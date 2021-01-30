@@ -56,6 +56,17 @@ public class accelerometerService extends Service implements SensorEventListener
         handler.postDelayed(runnable = new Runnable() {
 
             public void run() {
+
+                /**
+                 *     CALL FOR PHP SESSION and CHECK WITH IF ELSE STATEMENT IF WHETHER OR NOT SHOULD SEND TO DATABASE OR NOT.
+                 *     IF(x>x+1);
+                 *     then send Data
+                 *
+                 *     Compare with last session whether or not same, if not same then ACtIVE=1;
+                 *     else If ACTIVE =0 FROM SESSION; then Report Via twillio
+                 *
+                 *     WE WILL BE USING 2 PHP FILES FOR THE SESSION AND CHANGING ALL.
+                 */
                 handler.postDelayed(runnable, delay);
                 Log.i(TAG,"onSensorChanged X:" + x + "   Y:" + y + "   Z:" +z);
                 Date currentTime = Calendar.getInstance().getTime();
