@@ -1,10 +1,12 @@
 package mdad.proj;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -116,38 +118,81 @@ public class updateClient extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
-                // getting updated data from EditTexts
-                String username = txtUsername.getText().toString();
-                String password = txtPassword.getText().toString();
-                String name = txtName.getText().toString();
-                String nric = txtNric.getText().toString();
-                String phone = txtPhone.getText().toString();
-                String address = txtAddress.getText().toString();
-                String dob = txtDate.getText().toString();
-                String client_admin = txtClientAdminUpdate.getText().toString();
-                String in_charge = txtInChargeUpdate.getText().toString();
+                AlertDialog.Builder builder = new AlertDialog.Builder(updateClient.this);
+                builder.setMessage("Do you want to update this client?");
+                builder.setTitle ("Alert!");
+                builder.setCancelable(false);
+                builder
+                        .setPositiveButton(
+                                "Yes",
+                                new DialogInterface
+                                        .OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which)
+                                    {
+                                        //add items here dipshit
+                                        // getting updated data from EditTexts
+                                        String username = txtUsername.getText().toString();
+                                        String password = txtPassword.getText().toString();
+                                        String name = txtName.getText().toString();
+                                        String nric = txtNric.getText().toString();
+                                        String phone = txtPhone.getText().toString();
+                                        String address = txtAddress.getText().toString();
+                                        String dob = txtDate.getText().toString();
+                                        String client_admin = txtClientAdminUpdate.getText().toString();
+                                        String in_charge = txtInChargeUpdate.getText().toString();
 
 
-                // starting background task to update product
-                JSONObject dataJson = new JSONObject();
-                try {
-                    dataJson.put("user_id", pid);
-                    dataJson.put(TAG_USERNAME, username);
-                    dataJson.put(TAG_PASSWORD, password);
-                    dataJson.put(TAG_NAME, name);
-                    dataJson.put(TAG_NRICNUMBER, nric);
-                    dataJson.put(TAG_PHONENUMBER, phone);
-                    dataJson.put(TAG_ADDRESS, address);
-                    dataJson.put(TAG_DATE, dob);
-                    dataJson.put(TAG_CLIENTADMIN, client_admin);
-                    dataJson.put(TAG_INCHARGE, in_charge);
+                                        // starting background task to update product
+                                        JSONObject dataJson = new JSONObject();
+                                        try {
+                                            dataJson.put("user_id", pid);
+                                            dataJson.put(TAG_USERNAME, username);
+                                            dataJson.put(TAG_PASSWORD, password);
+                                            dataJson.put(TAG_NAME, name);
+                                            dataJson.put(TAG_NRICNUMBER, nric);
+                                            dataJson.put(TAG_PHONENUMBER, phone);
+                                            dataJson.put(TAG_ADDRESS, address);
+                                            dataJson.put(TAG_DATE, dob);
+                                            dataJson.put(TAG_CLIENTADMIN, client_admin);
+                                            dataJson.put(TAG_INCHARGE, in_charge);
 
 
-                } catch (JSONException e) {
+                                        } catch (JSONException e) {
 
-                }
+                                        }
 
-                postData(url_update_product, dataJson, 1);
+                                        postData(url_update_product, dataJson, 1);
+                                    }
+                                });
+
+                // Set the Negative button with No name
+                // OnClickListener method is use
+                // of DialogInterface interface.
+                builder
+                        .setNegativeButton(
+                                "No",
+                                new DialogInterface
+                                        .OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which)
+                                    {
+                                        // If user click no
+                                        // then dialog box is canceled.
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // Create the Alert dialog
+                AlertDialog alertDialog = builder.create();
+
+                // Show the Alert Dialog box
+                alertDialog.show();
+
+
 
             }
         });
