@@ -36,7 +36,7 @@ public class resultClient extends AppCompatActivity {
     ArrayList<HashMap<String, String>> updateList;
 
     // url to get all products list
-    private static String url_all_products = MainActivity.ipBaseAddress1+"/get_update_detailsJson.php";
+    private static String url_all_products = MainActivity.ipBaseAddress1+"/getSearchClientResults.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "updates";
@@ -82,7 +82,7 @@ public class resultClient extends AppCompatActivity {
 
         JSONObject dataJson = new JSONObject();
         try {
-            dataJson.put("user_id", nameTxt);
+            dataJson.put("username", nameTxt);
             //     dataJson.put("password", "def");
 
         } catch (JSONException e) {

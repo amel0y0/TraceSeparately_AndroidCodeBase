@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentTransaction fragmentTransaction;
 
     public static String ipBaseAddress = "https://trace-separately.herokuapp.com/";
-    public static String ipBaseAddress1 = "http://10.0.69.144:81/project";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
