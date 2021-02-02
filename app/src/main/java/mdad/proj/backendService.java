@@ -8,16 +8,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class backendService extends AppCompatActivity {
 
-    private Button btnService;
+    private Button btnService, btnHelp;
+    private TextView txtUpdate;
     private static final String TAGBTN ="BUTTON PRESSED";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_backend_service);
+
+        txtUpdate = (TextView)findViewById(R.id.txtUpdate);
 
         btnService = (Button) findViewById(R.id.btnService);
 
@@ -39,10 +43,23 @@ public class backendService extends AppCompatActivity {
                         myEditor.putInt("SERVICE_START",x);
                         myEditor.commit();
                         startService(new Intent(backendService.this, accelerometerService.class));
+                        txtUpdate.setText("Service has started successfully");
                     }
                 }
         );
+        btnHelp = (Button) findViewById(R.id.btnHelp);
 
+        btnHelp.setOnClickListener(new View.OnClickListener()
+                                      {
+
+                                          @Override
+                                          public void onClick(View v) {
+                                              Log.i(TAGBTN,"Help has been called");
+                                              txtUpdate.setText("Help has been called");
+
+                                          }
+                                      }
+        );
 
     }
     

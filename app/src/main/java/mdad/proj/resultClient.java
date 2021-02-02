@@ -39,9 +39,10 @@ public class resultClient extends AppCompatActivity {
     private static String url_all_products = MainActivity.ipBaseAddress+"/getSearchClientResults.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "response";
-    private static final String TAG_PID = "updates_id";
-    private static final String TAG_NAME = "user_id";
+    private static final String TAG_PRODUCTS = "user";
+    private static final String TAG_PID = "user_id";
+    private static final String TAG_USERNAME = "username";
+    private static final String TAG_NAME = "name";
     private static final String TAG_DATE = "last_update";
     private static final String TAG_STATUS = "status";
 
@@ -134,8 +135,17 @@ public class resultClient extends AppCompatActivity {
                 // Storing each json item in variable
                 String id = c.getString(TAG_PID);
                 String name = c.getString(TAG_NAME);
+                String username = c.getString(TAG_USERNAME);
                 String date = c.getString(TAG_DATE);
                 String status = c.getString(TAG_STATUS);
+
+                String update = "";
+                if (status.equals("1")) {
+                    update = "Online";
+                }
+                else if (status.equals("0"))
+                    update = "No response";
+
 
                 // creating new HashMap
                 HashMap<String, String> map = new HashMap<String, String>();
@@ -143,8 +153,9 @@ public class resultClient extends AppCompatActivity {
                 // adding each child node to HashMap key => value
                 map.put(TAG_PID, id);
                 map.put(TAG_NAME, name);
+                map.put(TAG_USERNAME, username);
                 map.put(TAG_DATE, date);
-                map.put(TAG_STATUS, status);
+                map.put(TAG_STATUS, update);
 
                 // adding HashList to ArrayList
                 updateList.add(map);
