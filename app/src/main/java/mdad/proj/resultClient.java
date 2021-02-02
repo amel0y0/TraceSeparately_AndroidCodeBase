@@ -36,13 +36,13 @@ public class resultClient extends AppCompatActivity {
     ArrayList<HashMap<String, String>> updateList;
 
     // url to get all products list
-    private static String url_all_products = MainActivity.ipBaseAddress1+"/getSearchClientResults.php";
+    private static String url_all_products = MainActivity.ipBaseAddress+"/getSearchClientResults.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "updates";
+    private static final String TAG_PRODUCTS = "response";
     private static final String TAG_PID = "updates_id";
     private static final String TAG_NAME = "user_id";
-    private static final String TAG_DATE = "last_updated";
+    private static final String TAG_DATE = "last_update";
     private static final String TAG_STATUS = "status";
 
     // products JSONArray

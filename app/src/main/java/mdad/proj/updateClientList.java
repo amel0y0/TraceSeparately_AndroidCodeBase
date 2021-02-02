@@ -36,7 +36,7 @@ public class updateClientList extends AppCompatActivity {
     ArrayList<HashMap<String, String>> productsList;
 
     // url to get all products list
-    private static String url_all_products = MainActivity.ipBaseAddress1+"/get_all_clientsJson.php";
+    private static String url_all_products = MainActivity.ipBaseAddress+"/get_all_clientsJson.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "users";

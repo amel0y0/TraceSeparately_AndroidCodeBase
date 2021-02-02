@@ -52,9 +52,9 @@ public class updateClient extends AppCompatActivity {
     static InputStream is = null;
 
     // single product url
-    private static final String url_product_details = MainActivity.ipBaseAddress1 + "/get_client_detailsJson.php";
+    private static final String url_product_details = MainActivity.ipBaseAddress + "/get_client_detailsJson.php";
     // url to update product
-    private static final String url_update_product = MainActivity.ipBaseAddress1 + "/update_productJson.php";
+    private static final String url_update_product = MainActivity.ipBaseAddress + "/update_productJson.php";
 
     // 152.226.144.250
     // JSON Node names
@@ -65,12 +65,12 @@ public class updateClient extends AppCompatActivity {
     private static final String TAG_USERNAME = "username";
     private static final String TAG_PASSWORD = "password";
     private static final String TAG_NAME = "name";
-    private static final String TAG_NRICNUMBER = "nric_number";
-    private static final String TAG_PHONENUMBER = "phone_number";
+    private static final String TAG_NRICNUMBER = "nric";
+    private static final String TAG_PHONENUMBER = "phone_no";
     private static final String TAG_ADDRESS = "address";
-    private static final String TAG_DATE = "date_of_birth";
+    private static final String TAG_DATE = "dob";
     private static final String TAG_CLIENTADMIN = "client_admin";
-    private static final String TAG_INCHARGE = "in_charge";
+    private static final String TAG_INCHARGE = "incharge";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
