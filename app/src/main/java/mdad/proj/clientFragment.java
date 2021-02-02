@@ -40,7 +40,7 @@ public class clientFragment extends Fragment {
     ArrayList<HashMap<String, String>> mainList;
 
     // For Exel: modify the php file name to the new one created
-    private static String url_all_products = MainActivity.ipBaseAddress+"/get_update_detailsJson.php";
+    private static String url_all_products = MainActivity.ipBaseAddress+"/get_all_clientsJson.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "updates";
@@ -101,6 +101,7 @@ public class clientFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_client, container, false);
 
+        lvUpdate = (ListView) view.findViewById(R.id.list_main);
         //RECEIVE DATA VIA INTENT
         Intent i =getActivity().getIntent();
         String name = i.getStringExtra("NAME_KEY");
@@ -109,9 +110,9 @@ public class clientFragment extends Fragment {
         Toast.makeText(getActivity().getApplicationContext(), "Check: "+ nameTxt, Toast.LENGTH_SHORT).show();
 
         mainList = new ArrayList<HashMap<String, String>>();
+
         // Loading products in Background Thread
         //postData(url_all_products,null );
-        lvUpdate = (ListView) getActivity().findViewById(R.id.list_main);
 
         JSONObject dataJson = new JSONObject();
         try {
@@ -126,9 +127,7 @@ public class clientFragment extends Fragment {
         return view;
     }
     public void postData(String url, final JSONObject json, final int option){
-        /**
-         *      VOLLEY DEPENDS ON ACTIVITY FUNCTION
-         */
+
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         JsonObjectRequest json_obj_req = new JsonObjectRequest(
                 Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
@@ -190,12 +189,12 @@ public class clientFragment extends Fragment {
             /**
              * Updating parsed JSON data into ListView
              * */
+            // updating listview
             ListAdapter adapter = new SimpleAdapter(
-                    clientFragment.this, mainList,
-                    R.layout.list_main, new String[] { TAG_PID,
+                    getActivity(), mainList,
+                    R.layout.fragment_client, new String[] { TAG_PID,
                     TAG_DATE, TAG_STATUS},
                     new int[] { R.id.pid, R.id.name, R.id.status });
-            // updating listview
             lvUpdate.setAdapter(adapter);
 
             Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
