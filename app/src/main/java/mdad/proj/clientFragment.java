@@ -1,6 +1,7 @@
 package mdad.proj;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -40,13 +41,14 @@ public class clientFragment extends Fragment {
     ArrayList<HashMap<String, String>> mainList;
 
     // For Exel: modify the php file name to the new one created
-    private static String url_all_products = MainActivity.ipBaseAddress+"/get_all_clientsJson.php";
+    private static String url_all_products = MainActivity.ipBaseAddress+"/mainUpdates.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "updates";
-    private static final String TAG_PID = "updates_id";
-    private static final String TAG_NAME = "user_id";
-    private static final String TAG_DATE = "last_updated";
+    private static final String TAG_PRODUCTS = "user";
+    private static final String TAG_PID = "user_id";
+    private static final String TAG_NAME = "name";
+    private static final String TAG_USERNAME = "username";
+    private static final String TAG_DATE = "last_update";
     private static final String TAG_STATUS = "status";
 
     // products JSONArray
@@ -104,7 +106,9 @@ public class clientFragment extends Fragment {
         lvUpdate = (ListView) view.findViewById(R.id.list_main);
         //RECEIVE DATA VIA INTENT
         Intent i =getActivity().getIntent();
-        String name = i.getStringExtra("NAME_KEY");
+        SharedPreferences myPrefs = getActivity().getSharedPreferences("INCHARGE",0);
+        SharedPreferences.Editor myEditor = myPrefs.edit();
+        String name = myPrefs.getString("INCHARGE","No name set");
         //SET DATA TO TEXTVIEWS
         nameTxt = name;
         Toast.makeText(getActivity().getApplicationContext(), "Check: "+ nameTxt, Toast.LENGTH_SHORT).show();
@@ -116,7 +120,7 @@ public class clientFragment extends Fragment {
 
         JSONObject dataJson = new JSONObject();
         try {
-            dataJson.put("user_id", nameTxt);
+            dataJson.put("incharge", nameTxt);
             //     dataJson.put("password", "def");
 
         } catch (JSONException e) {
@@ -169,6 +173,7 @@ public class clientFragment extends Fragment {
 
                 // Storing each json item in variable
                 String id = c.getString(TAG_PID);
+                String username = c.getString(TAG_USERNAME);
                 String name = c.getString(TAG_NAME);
                 String date = c.getString(TAG_DATE);
                 String status = c.getString(TAG_STATUS);
@@ -179,6 +184,7 @@ public class clientFragment extends Fragment {
                 // adding each child node to HashMap key => value
                 map.put(TAG_PID, id);
                 map.put(TAG_NAME, name);
+                map.put(TAG_USERNAME, username);
                 map.put(TAG_DATE, date);
                 map.put(TAG_STATUS, status);
 
@@ -192,9 +198,9 @@ public class clientFragment extends Fragment {
             // updating listview
             ListAdapter adapter = new SimpleAdapter(
                     getActivity(), mainList,
-                    R.layout.fragment_client, new String[] { TAG_PID,
+                    R.layout.list_main, new String[] { TAG_PID, TAG_NAME,
                     TAG_DATE, TAG_STATUS},
-                    new int[] { R.id.pid, R.id.name, R.id.status });
+                    new int[] { R.id.pid, R.id.name, R.id.date, R.id.status });
             lvUpdate.setAdapter(adapter);
 
             Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
