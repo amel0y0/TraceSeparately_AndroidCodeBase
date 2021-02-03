@@ -30,6 +30,7 @@ import java.util.HashMap;
 public class resultClient extends AppCompatActivity {
 
     private ListView lvUpdate;
+    private TextView tvResultName, tvResultAddress, tvResultPhone;
 
     //String[] client;
 
@@ -45,6 +46,8 @@ public class resultClient extends AppCompatActivity {
     private static final String TAG_NAME = "name";
     private static final String TAG_DATE = "last_update";
     private static final String TAG_STATUS = "status";
+    private static final String TAG_ADDRESS = "address";
+    private static final String TAG_PHONENO = "phone_no";
 
     // products JSONArray
     JSONArray products = null;
@@ -66,6 +69,10 @@ public class resultClient extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+        tvResultName = (TextView)findViewById(R.id.tvResultName);
+        tvResultAddress = (TextView)findViewById(R.id.tvResultAddress);
+        tvResultPhone = (TextView)findViewById(R.id.tvResultPhone);
 
         //RECEIVE DATA VIA INTENT
         Intent i = getIntent();
@@ -138,6 +145,12 @@ public class resultClient extends AppCompatActivity {
                 String username = c.getString(TAG_USERNAME);
                 String date = c.getString(TAG_DATE);
                 String status = c.getString(TAG_STATUS);
+                String address = c.getString(TAG_ADDRESS);
+                String phoneno = c.getString(TAG_PHONENO);
+
+                tvResultName.setText(name);
+                tvResultAddress.setText(address);
+                tvResultPhone.setText(phoneno);
 
                 String update = "";
                 if (status.equals("1")) {
