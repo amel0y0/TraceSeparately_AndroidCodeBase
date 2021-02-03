@@ -12,12 +12,25 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.Date;
 
 public class accelerometerService extends Service implements SensorEventListener {
 
     //private final static int INTERVAL = 1000 * 60 * 180 //3 hours
+
+    private static final String url_login = MainActivity.ipBaseAddress+"LoginJ.php";
 
     int reportER;
     Handler handler = new Handler();
@@ -29,8 +42,13 @@ public class accelerometerService extends Service implements SensorEventListener
     private SensorManager sensorManager;
     Sensor accelerometer;
 
-    private static final String  url_CHECK= MainActivity.ipBaseAddress+"CHECK.php";
     private static final String  url_SEND= MainActivity.ipBaseAddress+"SEND.php";
+
+    // JSON Node names
+    private static final String TAG_USER_ID= "success";
+    private static final String TAG_LAST_UPDATE= "last_update";
+    private static final String TAG_STATUS= "status";
+
     public float x,y,z;
     @Override
     public IBinder onBind(Intent intent) {
@@ -96,6 +114,8 @@ public class accelerometerService extends Service implements SensorEventListener
                         if(reportER>0)
                             reportER--;
 
+                        sendData(1);
+
                         Log.i("CHECK_CHECK","CHECK 1 and 2 ARE NOT THE SAME ");
                     }
                     else {
@@ -131,12 +151,22 @@ public class accelerometerService extends Service implements SensorEventListener
 
     }
 
-    public void sendData(){
-        /**
-         *
-         *      CALL SEND UPDATES TABLE
-         */
+    public void sendData(int status){
+        Date currentTime = Calendar.getInstance().getTime();
+        Log.i(TIME_TAG,"Current Time of Sending:" +currentTime);
 
+        JSONObject dataJson = new JSONObject();
+        try{
+            dataJson.put("user_id", user_id);
+            dataJson.put("status",status);
+            dataJson.put("last_update", currentTime);
+
+        }catch(JSONException e){
+
+        }
+
+        postData(url_login,dataJson,1 );
+        //CALL DATA TO DO JSON posting for Heroku Fire
     }
 
     public void sendToReport(int reportER){
@@ -150,5 +180,32 @@ public class accelerometerService extends Service implements SensorEventListener
               */
         }
     }
+
+    public void postData(String url, final JSONObject json, final int option){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest json_obj_req = new JsonObjectRequest(
+                Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                switch (option){
+                    case 1:Log.i("SENDING","DATA HAS BEEN SENT"); break;
+
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                String alert_message;
+                alert_message = error.toString();
+                Log.d("Error", alert_message);
+            }
+
+        });
+        requestQueue.add(json_obj_req);
+    }
+
 
 }
