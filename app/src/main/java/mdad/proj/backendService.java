@@ -3,6 +3,7 @@ package mdad.proj;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 
 public class backendService extends AppCompatActivity {
 
-    private Button btnService, btnHelp;
+    private Button btnService, btnHelp, btnLogout;
     private TextView txtUpdate;
     private static final String TAGBTN ="BUTTON PRESSED";
 
@@ -58,6 +59,25 @@ public class backendService extends AppCompatActivity {
                                               Log.i(TAGBTN,"Help has been called");
                                               txtUpdate.setText("Help has been called");
 
+                                          }
+                                      }
+        );
+        btnLogout = (Button) findViewById(R.id.btnLogout);
+
+        btnLogout.setOnClickListener(new View.OnClickListener()
+                                      {
+
+                                          @Override
+                                          public void onClick(View v) {
+                                              SharedPreferences sharedPreferences = getSharedPreferences(LogIn.Pref, Context.MODE_PRIVATE);
+                                              SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                              editor.clear();
+                                              editor.apply();
+
+                                              finish();
+                                              Intent i = new Intent(backendService.this, LogIn.class);
+                                              startActivity(i);
                                           }
                                       }
         );
