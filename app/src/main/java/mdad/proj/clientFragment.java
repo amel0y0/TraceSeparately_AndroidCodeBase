@@ -178,6 +178,13 @@ public class clientFragment extends Fragment {
                 String date = c.getString(TAG_DATE);
                 String status = c.getString(TAG_STATUS);
 
+                String update = "";
+                if (status.equals("1")) {
+                    update = "Online";
+                }
+                else if (status.equals("0"))
+                    update = "No response";
+
                 // creating new HashMap
                 HashMap<String, String> map = new HashMap<String, String>();
 
@@ -186,7 +193,7 @@ public class clientFragment extends Fragment {
                 map.put(TAG_NAME, name);
                 map.put(TAG_USERNAME, username);
                 map.put(TAG_DATE, date);
-                map.put(TAG_STATUS, status);
+                map.put(TAG_STATUS, update);
 
                 // adding HashList to ArrayList
                 mainList.add(map);
@@ -198,9 +205,9 @@ public class clientFragment extends Fragment {
             // updating listview
             ListAdapter adapter = new SimpleAdapter(
                     getActivity(), mainList,
-                    R.layout.list_main, new String[] { TAG_PID, TAG_NAME,
+                    R.layout.list_main, new String[] { TAG_NAME,
                     TAG_DATE, TAG_STATUS},
-                    new int[] { R.id.pid, R.id.name, R.id.date, R.id.status });
+                    new int[] { R.id.name, R.id.date, R.id.status });
             lvUpdate.setAdapter(adapter);
 
             Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
