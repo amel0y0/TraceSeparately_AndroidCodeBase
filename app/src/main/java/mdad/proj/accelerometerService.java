@@ -32,6 +32,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static java.lang.Integer.parseInt;
+
 public class accelerometerService extends Service implements SensorEventListener {
 
     //private final static int INTERVAL = 1000 * 60 * 180 //3 hours
@@ -214,9 +216,9 @@ public class accelerometerService extends Service implements SensorEventListener
         });
         requestQueue.add(json_obj_req);
     }
-    public static float round(float floatValue) {
-        String finalValue=String.format("%.2f", floatValue);
-         return Float.parseFloat(finalValue);
+    public static int round(float floatValue) {
+        String finalValue=String.format("%.0f", floatValue);
+         return parseInt(finalValue);
     }
 
 }
