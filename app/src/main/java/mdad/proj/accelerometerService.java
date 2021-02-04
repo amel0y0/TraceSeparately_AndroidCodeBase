@@ -8,10 +8,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.icu.math.BigDecimal;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,6 +37,7 @@ public class accelerometerService extends Service implements SensorEventListener
     //private final static int INTERVAL = 1000 * 60 * 180 //3 hours
 
     private static final String url_Updates= MainActivity.ipBaseAddress+"sendUpdate.php";
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     int reportER;
     Handler handler = new Handler();
@@ -59,9 +65,9 @@ public class accelerometerService extends Service implements SensorEventListener
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        x=event.values[0];
-        y=event.values[1];
-        z=event.values[2];
+        x=round(event.values[0]);
+        y=round(event.values[1]);
+        z=round(event.values[2]);
     }
 
     @Override
@@ -208,6 +214,9 @@ public class accelerometerService extends Service implements SensorEventListener
         });
         requestQueue.add(json_obj_req);
     }
-
+    public static float round(float floatValue) {
+        String finalValue=String.format("%.2f", floatValue);
+         return Float.parseFloat(finalValue);
+    }
 
 }
