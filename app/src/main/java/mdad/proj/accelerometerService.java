@@ -58,7 +58,7 @@ public class accelerometerService extends Service implements SensorEventListener
     private static final String TAG_LAST_UPDATE= "last_update";
     private static final String TAG_STATUS= "status";
 
-    public float x,y,z;
+    public int x,y,z;
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -96,25 +96,25 @@ public class accelerometerService extends Service implements SensorEventListener
 
                 if(x_service>0)
                 {
-                    float check1,check2;
-                    float x2,y2,z2;
+                    int check1,check2;
+                    int x2,y2,z2;
                     Log.i(TAG,"onSensorChanged X:" + x + "   Y:" + y + "   Z:" +z);
                     /**
                      *  POST DATA HERE
                      */
 
-                    x2=myPrefs.getFloat("X_VALUE",0);
-                    y2=myPrefs.getFloat("Y_VALUE",0);
-                    z2=myPrefs.getFloat("Z_VALUE",0);
+                    x2=myPrefs.getInt("X_VALUE",0);
+                    y2=myPrefs.getInt("Y_VALUE",0);
+                    z2=myPrefs.getInt("Z_VALUE",0);
 
                     check1=x+y+z;
                     check2=x2+y2+z2;
 
                     if(check1!=check2)
                     {
-                        myEditor.putFloat("X_VALUE",x);
-                        myEditor.putFloat("Y_VALUE",y);
-                        myEditor.putFloat("Z_VALUE",z);
+                        myEditor.putInt("X_VALUE",x);
+                        myEditor.putInt("Y_VALUE",y);
+                        myEditor.putInt("Z_VALUE",z);
                         myEditor.commit();
 
                         if(reportER>0)
