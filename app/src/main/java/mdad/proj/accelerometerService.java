@@ -23,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,12 +31,12 @@ public class accelerometerService extends Service implements SensorEventListener
 
     //private final static int INTERVAL = 1000 * 60 * 180 //3 hours
 
-    private static final String url_login = MainActivity.ipBaseAddress+"LoginJ.php";
+    private static final String url_Updates= MainActivity.ipBaseAddress+"sendUpdate.php";
 
     int reportER;
     Handler handler = new Handler();
     Runnable runnable;
-    int delay =10000;
+    int delay =15000;
     //int delay2=1000;
     private static final String TAG = "ACCELEROMETER SERVICE";
     private static final String  TIME_TAG= "TIME OF CURRENT FORMAT";
@@ -90,9 +91,6 @@ public class accelerometerService extends Service implements SensorEventListener
                     float check1,check2;
                     float x2,y2,z2;
                     Log.i(TAG,"onSensorChanged X:" + x + "   Y:" + y + "   Z:" +z);
-                    Date currentTime = Calendar.getInstance().getTime();
-                    Log.i(TIME_TAG,"Current Time of Sending:" +currentTime);
-                    Toast.makeText(accelerometerService.this, "X:" + x + "Y:" + y + "Z:" +z, Toast.LENGTH_SHORT).show();
                     /**
                      *  POST DATA HERE
                      */
@@ -152,9 +150,13 @@ public class accelerometerService extends Service implements SensorEventListener
     }
 
     public void sendData(int status){
-        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String currentTime = sdf.format(Calendar.getInstance().getTime());
         Log.i(TIME_TAG,"Current Time of Sending:" +currentTime);
 
+
+        SharedPreferences myPrefs = getSharedPreferences("USER_ID",0);
+        int user_id= myPrefs.getInt("USER_ID",0);
         JSONObject dataJson = new JSONObject();
         try{
             dataJson.put("user_id", user_id);
@@ -165,7 +167,7 @@ public class accelerometerService extends Service implements SensorEventListener
 
         }
 
-        postData(url_login,dataJson,1 );
+        postData(url_Updates,dataJson,1 );
         //CALL DATA TO DO JSON posting for Heroku Fire
     }
 
