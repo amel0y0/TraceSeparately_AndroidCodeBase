@@ -136,9 +136,9 @@ public class accelerometerService extends Service implements SensorEventListener
                     Log.i("ADDED DATA", "SESSION SERVICE POSITION:" +x_service_write);
 
                     myEditor.putInt("SERVICE_START",x_service_write);
-                    myEditor.putFloat("X_VALUE",x);
-                    myEditor.putFloat("Y_VALUE",y);
-                    myEditor.putFloat("Z_VALUE",z);
+                    myEditor.putInt("X_VALUE",x);
+                    myEditor.putInt("Y_VALUE",y);
+                    myEditor.putInt("Z_VALUE",z);
                     myEditor.commit();
                 }
                 /**
