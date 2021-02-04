@@ -1,11 +1,13 @@
 package mdad.proj;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +28,7 @@ public class backendService extends AppCompatActivity {
         txtUpdate = (TextView)findViewById(R.id.txtUpdate);
 
         btnService = (Button) findViewById(R.id.btnService);
+        btnHelp    = (Button) findViewById(R.id.btnHelp);
 
         btnService.setOnClickListener(new View.OnClickListener()
                 {
@@ -49,16 +52,14 @@ public class backendService extends AppCompatActivity {
                     }
                 }
         );
-        btnHelp = (Button) findViewById(R.id.btnHelp);
 
         btnHelp.setOnClickListener(new View.OnClickListener()
                                       {
 
                                           @Override
                                           public void onClick(View v) {
-                                              Log.i(TAGBTN,"Help has been called");
+                                              Log.i(TAGBTN,"Stopping Service");
                                               txtUpdate.setText("Help has been called");
-
                                           }
                                       }
         );

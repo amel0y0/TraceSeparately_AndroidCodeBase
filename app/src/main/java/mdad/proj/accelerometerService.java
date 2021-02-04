@@ -8,14 +8,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.icu.math.BigDecimal;
-import android.os.Build;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Process;
 import android.util.Log;
 import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,7 +30,6 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import static java.lang.Integer.parseInt;
 
@@ -39,6 +38,7 @@ public class accelerometerService extends Service implements SensorEventListener
     //private final static int INTERVAL = 1000 * 60 * 180 //3 hours
 
     private static final String url_Updates= MainActivity.ipBaseAddress+"sendUpdate.php";
+    public static  Intent ServiceIntent;
     private static DecimalFormat df = new DecimalFormat("0.00");
 
     int reportER;
@@ -59,6 +59,43 @@ public class accelerometerService extends Service implements SensorEventListener
     private static final String TAG_STATUS= "status";
 
     public int x,y,z;
+    private Looper serviceLooper;
+    private ServiceHandler serviceHandler;
+    // Handler that receives messages from the thread
+    private final class ServiceHandler extends Handler {
+        public ServiceHandler(Looper looper) {
+            super(looper);
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            // Normally we would do some work here, like download a file.
+            // For our sample, we just sleep for 5 seconds.
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                // Restore interrupt status.
+                Thread.currentThread().interrupt();
+            }
+            // Stop the service using the startId, so that we don't stop
+            // the service in the middle of handling another job
+            stopSelf(msg.arg1);
+        }
+    }
+    @Override
+    public void onCreate() {
+        // Start up the thread running the service. Note that we create a
+        // separate thread because the service normally runs in the process's
+        // main thread, which we don't want to block. We also make it
+        // background priority so CPU-intensive work doesn't disrupt our UI.
+        HandlerThread thread = new HandlerThread("ServiceStartArguments",
+                Process.THREAD_PRIORITY_BACKGROUND);
+        thread.start();
+
+        // Get the HandlerThread's Looper and use it for our Handler
+        Looper serviceLooper = thread.getLooper();
+        serviceHandler = new ServiceHandler(serviceLooper);
+    }
+
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -77,6 +114,7 @@ public class accelerometerService extends Service implements SensorEventListener
 
 
     }
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -118,7 +156,7 @@ public class accelerometerService extends Service implements SensorEventListener
                         myEditor.commit();
 
                         if(reportER>0)
-                            reportER--;
+                            reportER=0;
 
                         sendData(1);
 
@@ -220,5 +258,9 @@ public class accelerometerService extends Service implements SensorEventListener
         String finalValue=String.format("%.0f", floatValue);
          return parseInt(finalValue);
     }
-
+    @Override
+    public void onDestroy() {
+        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
+        Log.i("STOPPING", "SERVICE IS STOPPED");
+    }
 }
