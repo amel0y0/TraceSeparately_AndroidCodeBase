@@ -76,6 +76,13 @@ public class deleteClient extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
+        myChildToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 //        lvClientDelete = findViewById(R.id.lvClientDelete);
 //        client = new DateFormatSymbols().getMonths();
 //        ArrayAdapter<String> clientAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, client);

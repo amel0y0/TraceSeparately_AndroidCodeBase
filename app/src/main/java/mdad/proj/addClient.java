@@ -1,5 +1,6 @@
 package mdad.proj;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -81,6 +82,13 @@ public class addClient extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+        myChildToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         txtAddUsername   =   (EditText) findViewById(R.id.txtAddUsername);
         txtAddPassword   =   (EditText) findViewById(R.id.txtAddPassword);

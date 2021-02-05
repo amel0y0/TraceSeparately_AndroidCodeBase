@@ -86,6 +86,13 @@ public class updateClient extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
+        myChildToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         // save button
         btnUpdateClient = (Button) findViewById(R.id.btnUpdateClient);
