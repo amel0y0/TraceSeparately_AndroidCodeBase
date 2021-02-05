@@ -44,15 +44,14 @@ public class accelerometerService extends Service implements SensorEventListener
     int reportER;
     Handler handler = new Handler();
     Runnable runnable;
-    int delay =15000;
+    int delay =5000;
     //int delay2=1000;
     private static final String TAG = "ACCELEROMETER SERVICE";
     private static final String  TIME_TAG= "TIME OF CURRENT FORMAT";
     private SensorManager sensorManager;
     Sensor accelerometer;
 
-    private static final String  url_SEND= MainActivity.ipBaseAddress+"SEND.php";
-
+    private static final String  url_SENDMSG= MainActivity.ipBaseAddress+"sendMSG.php";
     // JSON Node names
     private static final String TAG_USER_ID= "success";
     private static final String TAG_LAST_UPDATE= "last_update";
@@ -201,7 +200,7 @@ public class accelerometerService extends Service implements SensorEventListener
         Log.i(TIME_TAG,"Current Time of Sending:" +currentTime);
 
 
-        SharedPreferences myPrefs = getSharedPreferences("USER_ID",0);
+        SharedPreferences myPrefs = getSharedPreferences("USER_DETAILS",0);
         int user_id= myPrefs.getInt("USER_ID",0);
         JSONObject dataJson = new JSONObject();
         try{
@@ -223,7 +222,31 @@ public class accelerometerService extends Service implements SensorEventListener
         {
 
             Log.i("REPORTER_STATUS","TIME TO MESSAGE THE ADMIN");
-            reportER=0;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String currentTime = sdf.format(Calendar.getInstance().getTime());
+            Log.i(TIME_TAG,"Current Time of Sending:" +currentTime);
+
+
+            SharedPreferences myPrefs = getSharedPreferences("USER_DETAILS",0);
+            int user_id= myPrefs.getInt("USER_ID",0);
+            String phoneNo=myPrefs.getString("PHONE_NO",null);
+            Log.d("PHONE",""+phoneNo);
+            JSONObject dataJson = new JSONObject();
+            JSONObject dataJson2 = new JSONObject();
+            try{
+                dataJson.put("user_id", user_id);
+                dataJson.put("status", 0);
+                dataJson.put("last_update", currentTime);
+
+                dataJson2.put("phone_no",phoneNo);
+
+            }catch(JSONException e){
+
+            }
+
+            postData(url_Updates,dataJson,1 );
+            postData(url_SENDMSG,dataJson2,1 );
+            //CALL DATA TO DO JSON posting for Heroku Fire
         }
     }
 

@@ -39,6 +39,7 @@ public class LogIn extends AppCompatActivity {
     private static final String TAG_SUCCESS = "success";
     private static final String CLIENT_ADMIN = "client_admin";
     private static final String USER_ID= "user_id";
+    private static final String USERNAME= "username";
     private static final String ADMIN_IN_CHARGE= "incharge";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +125,7 @@ public class LogIn extends AppCompatActivity {
                 //get CLIENT OR ADMIN STRING
                 client_admin=response.getString(CLIENT_ADMIN);
                 int client_user_id=response.getInt(USER_ID);
+                String client_user_name=response.getString(USERNAME);
                 /**
                  *  PLACE HOLDER FOR INCHARGE SESSION
                  */
@@ -144,11 +146,12 @@ public class LogIn extends AppCompatActivity {
                 }
                 if(client_admin.equals("C")){
                     //go Client Side
-                    SharedPreferences myPrefs = getSharedPreferences("USER_ID",0);
+                    SharedPreferences myPrefs = getSharedPreferences("USER_DETAILS",0);
                     SharedPreferences.Editor myEditor = myPrefs.edit();
                     myEditor.putInt("USER_ID",client_user_id);
+                    myEditor.putString("USERNAME",client_user_name);
                     myEditor.commit();
-                     finish();
+                    finish();
 
                     Intent i = new Intent(this, backendService.class);
                     startActivity(i);
