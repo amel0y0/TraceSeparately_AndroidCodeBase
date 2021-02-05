@@ -223,9 +223,7 @@ public class accelerometerService extends Service implements SensorEventListener
         {
 
             Log.i("REPORTER_STATUS","TIME TO MESSAGE THE ADMIN");
-            /**
-             * Call for the Admin
-              */
+            reportER=0;
         }
     }
 
