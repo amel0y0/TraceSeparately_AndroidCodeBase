@@ -83,11 +83,6 @@ public class deleteClient extends AppCompatActivity {
             }
         });
 
-//        lvClientDelete = findViewById(R.id.lvClientDelete);
-//        client = new DateFormatSymbols().getMonths();
-//        ArrayAdapter<String> clientAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, client);
-//        lvClientDelete.setAdapter(clientAdapter);
-//        lvClientDelete.setOnItemClickListener(this);
 
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
@@ -101,7 +96,6 @@ public class deleteClient extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 String client = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(), "Clicked: "+ client, Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(deleteClient.this);
                 builder.setMessage("Do you want to delete this client?");
@@ -199,6 +193,7 @@ public class deleteClient extends AppCompatActivity {
                 // send result code 100 to notify about product update
                 setResult(100, i);
                 finish();
+                Toast.makeText(deleteClient.this, "Client has been deleted.", Toast.LENGTH_SHORT).show();
 
             }else{
                 //Error Response from server

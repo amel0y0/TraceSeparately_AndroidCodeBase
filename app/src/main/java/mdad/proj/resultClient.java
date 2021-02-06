@@ -87,7 +87,6 @@ public class resultClient extends AppCompatActivity {
         String name = i.getStringExtra("NAME_KEY");
         //SET DATA TO TEXTVIEWS
         nameTxt = name;
-        Toast.makeText(getApplicationContext(), "Check: "+ nameTxt, Toast.LENGTH_SHORT).show();
 
         updateList = new ArrayList<HashMap<String, String>>();
         // Loading products in Background Thread
@@ -113,7 +112,6 @@ public class resultClient extends AppCompatActivity {
                 Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(getApplicationContext(), "This works", Toast.LENGTH_SHORT).show();
 
                 switch (option){
                     case 1:checkResponseEditProduct(response);
@@ -192,8 +190,6 @@ public class resultClient extends AppCompatActivity {
                     new int[] { R.id.pid, R.id.name, R.id.status });
             // updating listview
             lvUpdate.setAdapter(adapter);
-
-            Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
 
 
         } catch (JSONException e) {

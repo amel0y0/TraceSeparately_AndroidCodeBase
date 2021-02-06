@@ -281,7 +281,7 @@ public class accelerometerService extends Service implements SensorEventListener
     }
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Service has ended.", Toast.LENGTH_SHORT).show();
         Log.i("STOPPING", "SERVICE IS STOPPED");
     }
 }

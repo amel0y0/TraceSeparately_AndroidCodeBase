@@ -69,11 +69,6 @@ public class updateClientList extends AppCompatActivity {
             }
         });
 
-        //lvClientUpdate = findViewById(R.id.lvClientUpdate);
-        //client = new DateFormatSymbols().getMonths();
-        //ArrayAdapter<String> clientAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, client);
-        //lvClientUpdate.setAdapter(clientAdapter);
-        //lvClientUpdate.setOnItemClickListener(this);
 
         //   Log.i("------url_all_products",url_all_products);
         // Hashmap for ListView
@@ -100,24 +95,6 @@ public class updateClientList extends AppCompatActivity {
         });
     }
 
-    // Response from Edit Product Activity
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // if result code 100 means Continue
-        //https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
-
-
-        if (resultCode == 100) {
-            // if result code 100 is received
-            // means user edited/deleted product
-            // reload this screen again
-            Intent intent = getIntent();
-            finish();
-            startActivity(intent);
-        }
-
-    }
 
     public void postData(String url, final JSONObject json){
         RequestQueue requestQueue = Volley.newRequestQueue(this);

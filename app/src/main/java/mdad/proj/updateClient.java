@@ -118,7 +118,6 @@ public class updateClient extends AppCompatActivity {
 
         postData(url_product_details, dataJson, 1);
 
-        //Toast.makeText(getApplicationContext(), "This is the pid: " + pid, Toast.LENGTH_SHORT).show();
 
         btnUpdateClient.setOnClickListener(new View.OnClickListener() {
 
@@ -172,6 +171,7 @@ public class updateClient extends AppCompatActivity {
                                         }
 
                                         postData(url_update_product, dataJson, 1);
+                                        Toast.makeText(getApplicationContext(), "Client has been updated.", Toast.LENGTH_LONG).show();
                                     }
                                 });
 
@@ -213,7 +213,6 @@ public class updateClient extends AppCompatActivity {
                 Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(getApplicationContext(), "This works", Toast.LENGTH_SHORT).show();
 
                 switch (option){
                     case 1:checkResponseEditProduct(response);
@@ -274,8 +273,6 @@ public class updateClient extends AppCompatActivity {
                 txtDate.setText(client_date);
                 txtClientAdminUpdate.setText(client_admin);
                 txtInChargeUpdate.setText(client_incharge);
-
-                Toast.makeText(getApplicationContext(), "Value is "+client_username, Toast.LENGTH_LONG).show();
 
 
         } catch (JSONException e) {

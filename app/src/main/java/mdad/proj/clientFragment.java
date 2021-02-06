@@ -111,7 +111,6 @@ public class clientFragment extends Fragment {
         String name = myPrefs.getString("INCHARGE","No name set");
         //SET DATA TO TEXTVIEWS
         nameTxt = name;
-        Toast.makeText(getActivity().getApplicationContext(), "Check: "+ nameTxt, Toast.LENGTH_SHORT).show();
 
         mainList = new ArrayList<HashMap<String, String>>();
 
@@ -137,7 +136,6 @@ public class clientFragment extends Fragment {
                 Request.Method.POST, url, json, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(getActivity().getApplicationContext(), "This works", Toast.LENGTH_SHORT).show();
 
                 switch (option){
                     case 1:checkResponseEditProduct(response);
@@ -210,7 +208,6 @@ public class clientFragment extends Fragment {
                     new int[] { R.id.name, R.id.date, R.id.status });
             lvUpdate.setAdapter(adapter);
 
-            Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
 
 
         } catch (JSONException e) {

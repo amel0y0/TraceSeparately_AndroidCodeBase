@@ -136,6 +136,7 @@ public class addClient extends AppCompatActivity {
                     }
 
                     postData(url_create_product,dataJson,1 );
+                    Toast.makeText(addClient.this, "Client has been added.", Toast.LENGTH_SHORT).show();
                 }
             });
     }
@@ -175,7 +176,7 @@ public class addClient extends AppCompatActivity {
         Log.i("----Response", response+" ");
         try {
             if(response.getInt(TAG_SUCCESS)==1){
-                Toast.makeText(addClient.this, "Client has been Added.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(addClient.this, "Client has been added.", Toast.LENGTH_SHORT).show();
                 /**
                  *  finish();
                     Intent i = new Intent(this, addClient.class);
