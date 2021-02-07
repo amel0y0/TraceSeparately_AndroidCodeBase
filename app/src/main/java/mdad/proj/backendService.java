@@ -27,13 +27,15 @@ import org.json.JSONObject;
 
 public class backendService extends AppCompatActivity {
 
-    String client_userName;
+    String client_userName,admin_phone;
     private Button btnService, btnHelp, btnLogout;
     private TextView txtUpdate;
     private static final String url_getNumber= MainActivity.ipBaseAddress+"get_mobileJson.php";
+    private static final String url_callForHelp= MainActivity.ipBaseAddress+"sendHELP.php";
     private static final String TAGBTN ="BUTTON PRESSED";
     private static final String TAG_SUCCESS = "success";
     private static final String PHONE_NO= "phone_no";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,8 +78,15 @@ public class backendService extends AppCompatActivity {
         btnHelp.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Log.i(TAGBTN,"Stopping Service");
-               txtUpdate.setText("Help has been called");
+               Log.d("PHONE",""+admin_phone);
+               JSONObject dataJson2 = new JSONObject();
+               try{
+                   dataJson2.put("phone_no",admin_phone);
+               }catch(JSONException e){
+
+               }
+
+               postData(url_callForHelp,dataJson2,1 );
              }
             }
         );
@@ -145,7 +154,7 @@ public class backendService extends AppCompatActivity {
             if(response.getInt(TAG_SUCCESS)==1){
 
                 //get CLIENT OR ADMIN STRING
-                String admin_phone= response.getString(PHONE_NO);
+                 admin_phone= response.getString(PHONE_NO);
                 if(admin_phone!=null){
                        int x=0;
                         SharedPreferences myPrefs = getSharedPreferences("USER_DETAILS",0);
