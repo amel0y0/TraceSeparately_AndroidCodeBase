@@ -82,6 +82,7 @@ public class backendService extends AppCompatActivity {
                JSONObject dataJson2 = new JSONObject();
                try{
                    dataJson2.put("phone_no",admin_phone);
+                   dataJson2.put("username",client_userName);
                }catch(JSONException e){
 
                }

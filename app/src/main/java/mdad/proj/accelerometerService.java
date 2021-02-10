@@ -230,6 +230,7 @@ public class accelerometerService extends Service implements SensorEventListener
             SharedPreferences myPrefs = getSharedPreferences("USER_DETAILS",0);
             int user_id= myPrefs.getInt("USER_ID",0);
             String phoneNo=myPrefs.getString("PHONE_NO",null);
+            String username=myPrefs.getString("USERNAME", null);
             Log.d("PHONE",""+phoneNo);
             JSONObject dataJson = new JSONObject();
             JSONObject dataJson2 = new JSONObject();
@@ -239,6 +240,7 @@ public class accelerometerService extends Service implements SensorEventListener
                 dataJson.put("last_update", currentTime);
 
                 dataJson2.put("phone_no",phoneNo);
+                dataJson2.put("username",username);
 
             }catch(JSONException e){
 
